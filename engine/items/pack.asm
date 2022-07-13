@@ -30,10 +30,10 @@ Pack:
 	dw .MedicinePocketMenu ;  4
 	dw .InitBallsPocket    ;  5
 	dw .BallsPocketMenu    ;  6
-	dw .InitTMHMPocket     ;  7
-	dw .TMHMPocketMenu     ;  8
-	dw .InitBerriesPocket  ;  9
-	dw .BerriesPocketMenu  ; 10
+	dw .InitBerriesPocket  ;  7
+	dw .BerriesPocketMenu  ;  8
+	dw .InitTMHMPocket     ;  9
+	dw .TMHMPocketMenu     ; 10
 	dw .InitKeyItemsPocket ; 11
 	dw .KeyItemsPocketMenu ; 12
 	dw Pack_QuitNoScript   ; 13
@@ -108,7 +108,7 @@ Pack:
 	ld [wBallsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wBallsPocketCursor], a
-	lb bc, $3, $7 ; Medicine, TM/HM
+	lb bc, $3, $7 ; Medicine, Berries
 	call Pack_InterpretJoypad
 	ret c
 	jmp .ItemMedsBallsBerries_LoadSubmenu
@@ -122,7 +122,7 @@ Pack:
 
 .TMHMPocketMenu:
 	farcall TMHMPocket
-	lb bc, $5, $9 ; Balls, Berries
+	lb bc, $7, $b ; Berries, Key Items
 	call Pack_InterpretJoypad
 	ret c
 	jmp nz, PackSortMenu
@@ -170,7 +170,7 @@ Pack:
 	ld [wBerriesPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wBerriesPocketCursor], a
-	lb bc, $7, $b ; TM/HM, Key Items
+	lb bc, $5, $9 ; Balls, TM/HM
 	call Pack_InterpretJoypad
 	ret c
 	jr .ItemMedsBallsBerries_LoadSubmenu
@@ -184,7 +184,7 @@ Pack:
 
 .KeyItemsPocketMenu:
 	farcall KeyItemsPocket
-	lb bc, $9, $1 ; Berries, Items
+	lb bc, $9, $1 ; TM/HM, Items
 	call Pack_InterpretJoypad
 	ret c
 	jr KeyItems_LoadSubmenu
@@ -681,10 +681,10 @@ BattlePack:
 	dw .MedicinePocketMenu ;  4
 	dw .InitBallsPocket    ;  5
 	dw .BallsPocketMenu    ;  6
-	dw .InitTMHMPocket     ;  7
-	dw .TMHMPocketMenu     ;  8
-	dw .InitBerriesPocket  ;  9
-	dw .BerriesPocketMenu  ; 10
+	dw .InitBerriesPocket  ;  7
+	dw .BerriesPocketMenu  ;  8
+	dw .InitTMHMPocket     ;  9
+	dw .TMHMPocketMenu     ; 10
 	dw .InitKeyItemsPocket ; 11
 	dw .KeyItemsPocketMenu ; 12
 	dw Pack_QuitNoScript   ; 13
@@ -759,7 +759,7 @@ BattlePack:
 	ld [wBattleBallsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wBattleBallsPocketCursor], a
-	lb bc, $3, $7 ; Medicine, TM/HM
+	lb bc, $3, $7 ; Medicine, Berries
 	call Pack_InterpretJoypad
 	ret c
 	jmp ItemSubmenu
@@ -777,7 +777,7 @@ BattlePack:
 
 .TMHMPocketMenu:
 	farcall TMHMPocket
-	lb bc, $5, $9 ; Balls, Berries
+	lb bc, $7, $b ; Berries, Key Items
 	call Pack_InterpretJoypad
 	ret c
 	jmp nz, PackSortMenu
@@ -800,7 +800,7 @@ BattlePack:
 	ld [wBattleBerriesPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wBattleBerriesPocketCursor], a
-	lb bc, $7, $b ; TM/HM, Key Items
+	lb bc, $5, $9 ; Balls, TM/HM
 	call Pack_InterpretJoypad
 	ret c
 	jr ItemSubmenu
@@ -818,7 +818,7 @@ BattlePack:
 
 .KeyItemsPocketMenu:
 	farcall KeyItemsPocket
-	lb bc, $9, $1 ; Berries, Items
+	lb bc, $9, $1 ; TM/HM, Items
 	call Pack_InterpretJoypad
 	ret c
 	farcall CheckKeyItemContext
@@ -1007,12 +1007,12 @@ DepositSellPack:
 	call StandardStackJumpTable
 
 .Jumptable:
-	dw .ItemsPocket
-	dw .MedicinePocket
-	dw .BallsPocket
-	dw .TMHMPocket
-	dw .BerriesPocket
-	dw .KeyItemsPocket
+	dw .ItemsPocket    ; 0
+	dw .MedicinePocket ; 1
+	dw .BallsPocket    ; 2
+	dw .BerriesPocket  ; 3
+	dw .TMHMPocket     ; 4
+	dw .KeyItemsPocket ; 5
 
 .ItemsPocket:
 	ld a, ITEM - 1

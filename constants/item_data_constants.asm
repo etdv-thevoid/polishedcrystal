@@ -31,8 +31,8 @@ DEF KEYITEMATTR_STRUCT_LENGTH EQU _RS
 	const ITEM     ; 1
 	const MEDICINE ; 2
 	const BALL     ; 3
-	const TM_HM    ; 4
-	const BERRIES  ; 5
+	const BERRIES  ; 4
+	const TM_HM    ; 5
 	const KEY_ITEM ; 6
 DEF NUM_POCKETS EQU const_value - 1
 
