@@ -15,21 +15,20 @@ GoldenrodMuseum2F_MapScriptHeader:
 	bg_event  5,  0, BGEVENT_READ, BellTowerPaintingScript
 	bg_event  7,  0, BGEVENT_READ, HoOhPaintingScript
 	bg_event  8,  0, BGEVENT_READ, HoOhPaintingScript
-	bg_event  0,  4, BGEVENT_READ, KabutoPuzzleScript
-	bg_event  0,  5, BGEVENT_READ, KabutoPuzzleScript
-	bg_event  3,  4, BGEVENT_READ, OmanytePuzzleScript
-	bg_event  3,  5, BGEVENT_READ, OmanytePuzzleScript
-	bg_event  0,  6, BGEVENT_READ, AerodactylPuzzleScript
-	bg_event  0,  7, BGEVENT_READ, AerodactylPuzzleScript
-	bg_event  3,  6, BGEVENT_READ, HoOhPuzzleScript
-	bg_event  3,  7, BGEVENT_READ, HoOhPuzzleScript
+	bg_event  1,  4, BGEVENT_READ, KabutoPuzzleScript
+	bg_event  1,  5, BGEVENT_READ, KabutoPuzzleScript
+	bg_event  5,  4, BGEVENT_READ, OmanytePuzzleScript
+	bg_event  5,  5, BGEVENT_READ, OmanytePuzzleScript
+	bg_event  1,  6, BGEVENT_READ, AerodactylPuzzleScript
+	bg_event  1,  7, BGEVENT_READ, AerodactylPuzzleScript
+	bg_event  5,  6, BGEVENT_READ, HoOhPuzzleScript
+	bg_event  5,  7, BGEVENT_READ, HoOhPuzzleScript
 
 	def_object_events
 	object_event  4,  2, SPRITE_SIGHTSEER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, (1 << EVE) | (1 << NITE), 0, OBJECTTYPE_SCRIPT, 0, GoldenrodMuseum2FSightseerMScript, -1
 	pokemon_event 5,  2, SMEARGLE, SPRITEMOVEDATA_POKEMON, -1, (1 << EVE) | (1 << NITE), PAL_NPC_BROWN, GoldenrodMuseum2FSmeargleText, -1
-	object_event  1,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, GoldenrodMuseum2FScientistText, -1
-	object_event  6,  3, SPRITE_BIG_LAPRAS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_COMMAND, jumptext, GoldenrodMuseum2FBigPearlText, -1
-	object_event  6,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodMuseum2FRocketScoutScript, EVENT_GOLDENROD_CITY_ROCKET_SCOUT
+	object_event  3,  6, SPRITE_SCIENTIST, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, GoldenrodMuseum2FScientistText, -1
+	object_event 11,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, GoldenrodMuseum2FTeacherText, -1
 
 LugiaPaintingScript:
 	checkevent EVENT_FOUGHT_LUGIA
@@ -130,48 +129,13 @@ EmptyDisplayText:
 GoldenrodMuseum2FScientistText:
 	text "These artifacts"
 	line "are fascinating!"
-	
+
 	para "Its a shame they're"
 	line "just replicas."
 
 	para "I'd love to study"
 	line "the real thing"
 	cont "up close."
-	done
-
-GoldenrodMuseum2FBigPearlText:
-	text "It's a huge pearl"
-	line "fished up from"
-	cont "Goldenrod Harbor."
-	done
-
-GoldenrodMuseum2FRocketScoutScript:
-	opentext
-	writetext GoldenrodMuseum2FRocketScoutText1
-	promptbutton
-	faceplayer
-	writetext GoldenrodMuseum2FRocketScoutText2
-	waitbutton
-	closetext
-	turnobject LAST_TALKED, UP
-	end
-
-GoldenrodMuseum2FRocketScoutText1:
-	text "Hmm… This would"
-	line "fetch quite a"
-	cont "heavy price."
-
-	para "Now… how do I get"
-	line "it out of here"
-
-	para "without getting"
-	line "caught?"
-	done
-
-GoldenrodMuseum2FRocketScoutText2:
-	text "Don't you know it's"
-	line "rude to stare?"
-	cont "Beat it kid!"
 	done
 
 GoldenrodMuseum2FSightseerMScript:
@@ -184,7 +148,7 @@ GoldenrodMuseum2FSightseerMScript:
 
 	para "One day, I hope my"
 	line "art is hung in a"
-	
+
 	para "museum for all to"
 	line "see too."
 	done
@@ -210,3 +174,8 @@ GoldenrodMuseum2FSightseerMNoPaintingText:
 GoldenrodMuseum2FSmeargleText:
 	text "Smeargle: Smeer!"
 	done
+
+GoldenrodMuseum2FTeacherText:
+	text "TODO"
+	done
+
