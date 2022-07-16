@@ -304,18 +304,18 @@ GoldenrodCityCooltrainerF2Text_GotRadioCard:
 	done
 
 GoldenrodCityYoungsterDayText:
-;	text "Have you been to"
-;	line "the Museum?"
-;
-;	para "It's full of cool"
-;	line "exhibits!"
-	text "I can't wait to"
-	line "visit the Museum"
-	cont "once it's open!"
+	text "Have you been to"
+	line "the Museum?"
 
-	para "I heard they have"
-	line "some beautiful"
-	cont "paintings."
+	para "It's full of cool"
+	line "exhibits!"
+;	text "I can't wait to"
+;	line "visit the Museum"
+;	cont "once it's open!"
+;
+;	para "I heard they have"
+;	line "some beautiful"
+;	cont "paintings."
 	done
 
 GoldenrodCityYoungster2Text:
@@ -497,7 +497,12 @@ GoldenrodCityFlowerShopSignText:
 
 GoldenrodMuseumSignText:
 	text "Goldenrod Museum"
-	line "Opening Soon!"
+	
+	para "Grand Opening"
+
+	para "Explore the his-"
+	line "tory of Johto"
+	cont "today!"
 	done
 
 GoldenrodCityMoveTutorAskTeachAMoveText:

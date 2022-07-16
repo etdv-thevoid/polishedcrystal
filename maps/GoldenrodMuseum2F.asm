@@ -23,6 +23,9 @@ GoldenrodMuseum2F_MapScriptHeader:
 	bg_event  1,  7, BGEVENT_READ, AerodactylPuzzleScript
 	bg_event  5,  6, BGEVENT_READ, HoOhPuzzleScript
 	bg_event  5,  7, BGEVENT_READ, HoOhPuzzleScript
+	bg_event 10,  1, BGEVENT_JUMPTEXT, RuinsOfAlphRelicText
+	bg_event 11,  1, BGEVENT_JUMPTEXT, RuinsOfAlphRelicText
+	bg_event 11,  1, BGEVENT_JUMPTEXT, RuinsOfAlphRelicText
 
 	def_object_events
 	object_event  4,  2, SPRITE_SIGHTSEER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, (1 << EVE) | (1 << NITE), 0, OBJECTTYPE_SCRIPT, 0, GoldenrodMuseum2FSightseerMScript, -1
@@ -126,16 +129,8 @@ EmptyDisplayText:
 	line "still empty…"
 	done
 
-GoldenrodMuseum2FScientistText:
-	text "These artifacts"
-	line "are fascinating!"
-
-	para "Its a shame they're"
-	line "just replicas."
-
-	para "I'd love to study"
-	line "the real thing"
-	cont "up close."
+RuinsOfAlphRelicText:
+	text "TODO"
 	done
 
 GoldenrodMuseum2FSightseerMScript:
@@ -173,6 +168,18 @@ GoldenrodMuseum2FSightseerMNoPaintingText:
 
 GoldenrodMuseum2FSmeargleText:
 	text "Smeargle: Smeer!"
+	done
+
+GoldenrodMuseum2FScientistText:
+	text "These artifacts"
+	line "are fascinating!"
+
+	para "Its a shame they're"
+	line "just replicas."
+
+	para "I'd love to study"
+	line "the real thing"
+	cont "up close."
 	done
 
 GoldenrodMuseum2FTeacherText:
