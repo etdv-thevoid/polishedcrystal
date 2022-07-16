@@ -88,7 +88,7 @@ GoldenrodMuseum1FDrillText:
 	line "used to tunnel"
 
 	para "through super"
-	line "dense rock.
+	line "dense rock."
 	done
 
 GoldenrodMuseum1FHikerText:
