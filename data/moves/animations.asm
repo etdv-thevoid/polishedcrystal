@@ -2154,7 +2154,9 @@ BattleAnim_MindReader: ; removed
 BattleAnim_DizzyPunch:
 	anim_2gfx ANIM_GFX_STATUS, ANIM_GFX_HIT
 	anim_sound 0, 1, SFX_COMET_PUNCH
-	anim_obj ANIM_OBJ_PUNCH, -15, 0,  7, 0, $0
+	anim_obj ANIM_OBJ_PUNCH, -15, 0,   7, 0, $0
+	anim_wait 6
+	anim_obj ANIM_OBJ_HIT_YFIX, -15, 0,   7, 0, $0
 	anim_wait 16
 	anim_sound 0, 1, SFX_KINESIS
 	anim_obj ANIM_OBJ_CHICK, -15, 0,   3, 0, $15
