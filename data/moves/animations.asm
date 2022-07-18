@@ -323,33 +323,49 @@ BattleAnim_PlayRough:
 	anim_1gfx ANIM_GFX_HIT
 .loop
 	anim_sound 0, 1, SFX_POUND
-	anim_obj ANIM_OBJ_PALM, 148, 56, $0
-	anim_wait 1
-	anim_obj ANIM_OBJ_HIT_YFIX, 148, 56, $0
-	anim_wait 2
+	anim_obj ANIM_OBJ_KICK,  15, 0,   8, 0, $0
+	anim_obj ANIM_OBJ_HIT_YFIX,  15, 0,   8, 0, $0
+	anim_wait 6
 	anim_sound 0, 1, SFX_POUND
-	anim_obj ANIM_OBJ_PALM, 122, 34, $0
-	anim_wait 1
-	anim_obj ANIM_OBJ_HIT_YFIX, 122, 34, $0
-	anim_wait 2
+	anim_obj ANIM_OBJ_PALM, -15, 0,   4, 0, $0
+	anim_obj ANIM_OBJ_HIT_YFIX, -15, 0,   4, 0, $0
+	anim_wait 6
 	anim_sound 0, 1, SFX_POUND
-	anim_obj ANIM_OBJ_PALM, 132, 64, $0
-	anim_wait 1
-	anim_obj ANIM_OBJ_HIT_YFIX, 132, 64, $0
-	anim_wait 2
-	anim_sound 0, 1, SFX_POUND
-	anim_obj ANIM_OBJ_PALM, 140, 42, $0
-	anim_wait 1
-	anim_obj ANIM_OBJ_HIT_YFIX, 140, 42, $0
-	anim_wait 2
-	anim_sound 0, 1, SFX_POUND
-	anim_obj ANIM_OBJ_PALM, 114, 52, $0
-	anim_wait 1
-	anim_obj ANIM_OBJ_HIT_YFIX, 114, 52, $0
-	anim_wait 2
+	anim_obj ANIM_OBJ_PUNCH, -13, 0,   6, 0, $0
+	anim_obj ANIM_OBJ_HIT_YFIX, -13, 0,   6, 0, $0
+	anim_wait 6
 	anim_loop 3, .loop
 	anim_wait 16
 	anim_ret
+; .loop
+; 	anim_sound 0, 1, SFX_POUND
+; 	anim_obj ANIM_OBJ_PALM, 148, 56, $0
+; 	anim_wait 1
+; 	anim_obj ANIM_OBJ_HIT_YFIX, 148, 56, $0
+; 	anim_wait 2
+; 	anim_sound 0, 1, SFX_POUND
+; 	anim_obj ANIM_OBJ_PALM, 122, 34, $0
+; 	anim_wait 1
+; 	anim_obj ANIM_OBJ_HIT_YFIX, 122, 34, $0
+; 	anim_wait 2
+; 	anim_sound 0, 1, SFX_POUND
+; 	anim_obj ANIM_OBJ_PALM, 132, 64, $0
+; 	anim_wait 1
+; 	anim_obj ANIM_OBJ_HIT_YFIX, 132, 64, $0
+; 	anim_wait 2
+; 	anim_sound 0, 1, SFX_POUND
+; 	anim_obj ANIM_OBJ_PALM, 140, 42, $0
+; 	anim_wait 1
+; 	anim_obj ANIM_OBJ_HIT_YFIX, 140, 42, $0
+; 	anim_wait 2
+; 	anim_sound 0, 1, SFX_POUND
+; 	anim_obj ANIM_OBJ_PALM, 114, 52, $0
+; 	anim_wait 1
+; 	anim_obj ANIM_OBJ_HIT_YFIX, 114, 52, $0
+; 	anim_wait 2
+; 	anim_loop 3, .loop
+; 	anim_wait 16
+; 	anim_ret
 
 BattleAnim_DisarmVoice:
 	anim_1gfx ANIM_GFX_PSYCHIC
