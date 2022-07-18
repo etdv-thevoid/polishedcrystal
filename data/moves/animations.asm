@@ -2442,7 +2442,7 @@ BattleAnim_Hurricane:
 .loop3
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $6, $2
 	anim_sound 0, 1, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_HIT_YFIX,  14, 0,   8, 0, $0
+	anim_obj ANIM_OBJ_HIT_YFIX,  15, 0,   8, 0, $0
 	anim_wait 6
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $6, $2
 	anim_sound 0, 1, SFX_RAZOR_WIND
