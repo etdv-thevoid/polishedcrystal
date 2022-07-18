@@ -2440,22 +2440,18 @@ BattleAnim_Hurricane:
 	anim_incobj 9
 	anim_wait 64
 .loop3
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $6, $2
 	anim_sound 0, 1, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_HIT_YFIX, 148, 56, $0
-	anim_wait 4
+	anim_obj ANIM_OBJ_HIT_YFIX,  14, 0,   8, 0, $0
+	anim_wait 6
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $6, $2
 	anim_sound 0, 1, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_HIT_YFIX, 122, 34, $0
-	anim_wait 4
+	anim_obj ANIM_OBJ_HIT_YFIX, -15, 0,   4, 0, $0
+	anim_wait 6
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $6, $2
 	anim_sound 0, 1, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_HIT_YFIX, 132, 64, $0
-	anim_wait 4
-	anim_sound 0, 1, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_HIT_YFIX, 140, 42, $0
-	anim_wait 4
-	anim_sound 0, 1, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_HIT_YFIX, 114, 52, $0
-	anim_wait 4
+	anim_obj ANIM_OBJ_HIT_YFIX, -13, 0,   6, 0, $0
+	anim_wait 6
 	anim_loop 3, .loop3
 	anim_incobj 1
 	anim_incobj 2
