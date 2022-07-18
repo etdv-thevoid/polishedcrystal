@@ -3311,11 +3311,12 @@ BattleAnim_Barrier:
 
 BattleAnim_Waterfall:
 	anim_1gfx ANIM_GFX_HIT
-	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
 	anim_call BattleAnim_FollowPlayerHead_0
 	anim_bgeffect ANIM_BG_BODY_SLAM, $0, $1, $0
 	anim_wait 16
 	anim_call BattleAnim_ShowMon_0
+	anim_wait 3
+	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
 	anim_sound 0, 1, SFX_LICK
 	anim_obj ANIM_OBJ_HIT_YFIX, -15, 0,   7, 0, $0
 	anim_wait 3
