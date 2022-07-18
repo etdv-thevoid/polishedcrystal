@@ -3316,6 +3316,8 @@ BattleAnim_Waterfall:
 	anim_bgeffect ANIM_BG_BODY_SLAM, $0, $1, $0
 	anim_wait 16
 	anim_call BattleAnim_ShowMon_0
+	anim_wait 3
+	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
 	anim_sound 0, 1, SFX_LICK
 	anim_obj ANIM_OBJ_HIT_YFIX, -15, 0,   7, 0, $0
 	anim_wait 3
@@ -3934,15 +3936,15 @@ BattleAnim_Octazooka:
 	anim_sound 6, 2, SFX_SLUDGE_BOMB
 	anim_obj ANIM_OBJ_OCTAZOOKA,   8, 0,  11, 4, $4
 	anim_wait 16
+	anim_sound 0, 1, SFX_BALL_POOF
 	anim_obj ANIM_OBJ_BALL_POOF, -16, 4,   7, 0, $10
 	anim_wait 8
-	anim_jumpif $0, .done
 .loop
+	anim_sound 0, 1, SFX_MENU
 	anim_obj ANIM_OBJ_SMOKE, -16, 4,   7, 4, $20
 	anim_wait 8
 	anim_loop 5, .loop
 	anim_wait 128
-.done
 	anim_incbgeffect ANIM_BG_WHIRLPOOL
 	anim_wait 1
 	anim_ret
@@ -4246,7 +4248,7 @@ BattleAnim_Hail:
 BattleAnim_GigaDrain:
 	anim_1gfx ANIM_GFX_CHARGE
 	anim_call BattleAnim_FollowEnemyFeet_0
-	anim_bgeffect ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING, $0, $1, $20
+	anim_bgeffect ANIM_BG_FADE_MONS_TO_BLACK_REPEATING, $0, $0, $10
 	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 	anim_setvar $0
 .loop
@@ -4268,10 +4270,12 @@ BattleAnim_GigaDrain:
 	anim_jump .loop
 .done
 	anim_wait 32
-	anim_incbgeffect ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING
+	anim_incbgeffect ANIM_BG_FADE_MONS_TO_BLACK_REPEATING
 	anim_call BattleAnim_ShowMon_0
 	anim_wait 1
 	anim_1gfx ANIM_GFX_SHINE
+	anim_call BattleAnim_FollowEnemyFeet_0
+	anim_bgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING, $0, $1, $40
 	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $0, $0
 .loop2
 	anim_sound 0, 0, SFX_METRONOME
@@ -4286,6 +4290,8 @@ BattleAnim_GigaDrain:
 	anim_obj ANIM_OBJ_GLIMMER,   5, 0,  10, 4, $0
 	anim_wait 5
 	anim_loop 2, .loop2
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING
+	anim_call BattleAnim_ShowMon_0
 	anim_wait 32
 	anim_ret
 
