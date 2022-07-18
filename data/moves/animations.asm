@@ -3957,8 +3957,8 @@ BattleAnim_Octazooka:
 	anim_sound 0, 1, SFX_MENU
 	anim_obj ANIM_OBJ_SMOKE, -16, 4,   7, 4, $20
 	anim_wait 8
-	anim_loop 3, .loop
-	anim_wait 128
+	anim_loop 5, .loop
+	anim_wait 64
 	anim_incbgeffect ANIM_BG_WHIRLPOOL
 	anim_wait 1
 	anim_ret
