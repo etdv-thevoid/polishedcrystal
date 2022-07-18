@@ -3930,6 +3930,7 @@ BattleAnim_MudSlap:
 
 BattleAnim_Octazooka:
 	anim_3gfx ANIM_GFX_HAZE, ANIM_GFX_EGG, ANIM_GFX_SMOKE
+	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
 	anim_sound 6, 2, SFX_SLUDGE_BOMB
 	anim_obj ANIM_OBJ_OCTAZOOKA,   8, 0,  11, 4, $4
 	anim_wait 16
@@ -3942,6 +3943,8 @@ BattleAnim_Octazooka:
 	anim_loop 5, .loop
 	anim_wait 128
 .done
+	anim_incbgeffect ANIM_BG_WHIRLPOOL
+	anim_wait 1
 	anim_ret
 
 BattleAnim_Spikes:
