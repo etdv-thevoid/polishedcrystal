@@ -97,7 +97,11 @@ endc
 	move DISABLE,      EFFECT_DISABLE,             0, NORMAL,    100, 20,   0, STATUS
 	move ACID,         EFFECT_SP_DEF_DOWN_HIT,    40, POISON,    100, 30,  10, SPECIAL
 	move EMBER,        EFFECT_BURN_HIT,           40, FIRE,      100, 25,  10, SPECIAL
+if DEF(FAITHFUL)
 	move FLAMETHROWER, EFFECT_BURN_HIT,           90, FIRE,      100, 15,  10, SPECIAL
+else
+	move FLAMETHROWER, EFFECT_BURN_HIT,           90, FIRE,      100, 10,  10, SPECIAL
+endc
 	move CALM_MIND,    EFFECT_CALM_MIND,           0, PSYCHIC,   100, 20,   0, STATUS
 	move WATER_GUN,    EFFECT_NORMAL_HIT,         40, WATER,     100, 25,   0, SPECIAL
 if DEF(FAITHFUL)
