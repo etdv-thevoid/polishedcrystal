@@ -108,11 +108,13 @@ endc
 	move SEISMIC_TOSS, EFFECT_LEVEL_DAMAGE,        1, FIGHTING,  100, 20,   0, PHYSICAL
 if DEF(FAITHFUL)
 	move STRENGTH,     EFFECT_NORMAL_HIT,         80, NORMAL,    100, 15,   0, PHYSICAL
-else
-	move STRENGTH,     EFFECT_NORMAL_HIT,         80, FIGHTING,  100, 15,   0, PHYSICAL
-endc
 	move ABSORB,       EFFECT_LEECH_HIT,          20, GRASS,     100, 25,   0, SPECIAL
 	move MEGA_DRAIN,   EFFECT_LEECH_HIT,          40, GRASS,     100, 15,   0, SPECIAL
+else
+	move STRENGTH,     EFFECT_NORMAL_HIT,         80, FIGHTING,  100, 15,   0, PHYSICAL
+	move ABSORB,       EFFECT_LEECH_HIT,          25, GRASS,     100, 25,   0, SPECIAL
+	move MEGA_DRAIN,   EFFECT_LEECH_HIT,          50, GRASS,     100, 15,   0, SPECIAL
+endc
 	move LEECH_SEED,   EFFECT_LEECH_SEED,          0, GRASS,      90, 10,   0, STATUS
 	move GROWTH,       EFFECT_GROWTH,              0, NORMAL,    100, 20,   0, STATUS
 	move RAZOR_LEAF,   EFFECT_NORMAL_HIT,         55, GRASS,      95, 25,   0, PHYSICAL
