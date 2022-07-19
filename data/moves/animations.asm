@@ -321,10 +321,20 @@ BattleAnim_Moonblast:
 
 BattleAnim_PlayRough:
 	anim_1gfx ANIM_GFX_HIT
+.loop
 	anim_sound 0, 1, SFX_POUND
-	anim_obj ANIM_OBJ_PALM, -15, 0,   7, 0, $0
+	anim_obj ANIM_OBJ_PALM,  15, 0,   8, 0, $0
+	anim_obj ANIM_OBJ_HIT_YFIX,  15, 0,   8, 0, $0
 	anim_wait 6
-	anim_obj ANIM_OBJ_HIT_YFIX, -15, 0,   7, 0, $0
+	anim_sound 0, 1, SFX_POUND
+	anim_obj ANIM_OBJ_PALM, -15, 0,   4, 0, $0
+	anim_obj ANIM_OBJ_HIT_YFIX, -15, 0,   4, 0, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_POUND
+	anim_obj ANIM_OBJ_PALM, -13, 0,   6, 0, $0
+	anim_obj ANIM_OBJ_HIT_YFIX, -13, 0,   6, 0, $0
+	anim_wait 6
+	anim_loop 3, .loop
 	anim_wait 16
 	anim_ret
 
