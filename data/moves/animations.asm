@@ -2390,13 +2390,16 @@ BattleAnim_CloseCombat:
 	anim_ret
 
 BattleAnim_Hurricane:
-BattleAnim_Whirlwind: ; removed
-	anim_1gfx ANIM_GFX_WIND
-.loop
+	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_HIT
+.loop1
 	anim_sound 0, 0, SFX_RAZOR_WIND
 	anim_obj ANIM_OBJ_GUST,   8, 0,  14, 0, $0
 	anim_wait 6
-	anim_loop 9, .loop
+	anim_loop 9, .loop1
+.loop2
+	anim_sound 0, 0, SFX_RAZOR_WIND
+	anim_wait 8
+	anim_loop 8, .loop2
 	anim_incobj 1
 	anim_incobj 2
 	anim_incobj 3
@@ -2406,12 +2409,33 @@ BattleAnim_Whirlwind: ; removed
 	anim_incobj 7
 	anim_incobj 8
 	anim_incobj 9
-	anim_sound 16, 2, SFX_WHIRLWIND
-	anim_wait 128
-;	anim_jumpif $0, .done
-;	anim_bgeffect ANIM_BG_REMOVE_MON, $0, $0, $0
-;	anim_wait 64
-;.done
+	anim_wait 64
+.loop3
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_sound 0, 1, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_HIT_YFIX,  15, 0,   8, 0, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_HIT_YFIX, -15, 0,   4, 0, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_HIT_YFIX, -13, 0,   6, 0, $0
+	anim_wait 6
+	anim_loop 3, .loop3
+; .loop4
+; 	anim_sound 0, 0, SFX_RAZOR_WIND
+; 	anim_wait 8
+; 	anim_loop 8, .loop4
+	anim_incobj 1
+	anim_incobj 2
+	anim_incobj 3
+	anim_incobj 4
+	anim_incobj 5
+	anim_incobj 6
+	anim_incobj 7
+	anim_incobj 8
+	anim_incobj 9
+	anim_wait 32
 	anim_ret
 
 BattleAnim_KnockOff:
@@ -5732,6 +5756,30 @@ BattleAnim_StatDown:
 ; ================================
 ; unused animations below here
 ; ================================
+
+; BattleAnim_Whirlwind: ; removed
+; 	anim_1gfx ANIM_GFX_WIND
+; .loop
+; 	anim_sound 0, 0, SFX_RAZOR_WIND
+; 	anim_obj ANIM_OBJ_GUST,   8, 0,  14, 0, $0
+; 	anim_wait 6
+; 	anim_loop 9, .loop
+; 	anim_incobj 1
+; 	anim_incobj 2
+; 	anim_incobj 3
+; 	anim_incobj 4
+; 	anim_incobj 5
+; 	anim_incobj 6
+; 	anim_incobj 7
+; 	anim_incobj 8
+; 	anim_incobj 9
+; 	anim_sound 16, 2, SFX_WHIRLWIND
+; 	anim_wait 128
+;	anim_jumpif $0, .done
+;	anim_bgeffect ANIM_BG_REMOVE_MON, $0, $0, $0
+;	anim_wait 64
+;.done
+;	anim_ret
 
 ;BattleAnim_Twineedle: ; removed
 ;	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
