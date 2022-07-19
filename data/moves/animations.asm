@@ -2660,6 +2660,7 @@ BattleAnim_Swift:
 
 BattleAnim_Crabhammer:
 	anim_1gfx ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $40, $2, $0
 	anim_wait 48
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
@@ -2668,6 +2669,8 @@ BattleAnim_Crabhammer:
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, -15, 0,   7, 0, $0
 	anim_wait 12
 	anim_loop 3, .loop
+	anim_incbgeffect ANIM_BG_WHIRLPOOL
+	anim_wait 1
 	anim_ret
 
 ; Iron Head animation from Pokémon Prism
