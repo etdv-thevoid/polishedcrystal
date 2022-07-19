@@ -96,7 +96,11 @@ endc
 	move FLAMETHROWER, EFFECT_BURN_HIT,           90, FIRE,      100, 15,  10, SPECIAL
 	move CALM_MIND,    EFFECT_CALM_MIND,           0, PSYCHIC,   100, 20,   0, STATUS
 	move WATER_GUN,    EFFECT_NORMAL_HIT,         40, WATER,     100, 25,   0, SPECIAL
+if DEF(FAITHFUL)
 	move HYDRO_PUMP,   EFFECT_NORMAL_HIT,        110, WATER,      80,  5,   0, SPECIAL
+else
+	move HYDRO_PUMP,   EFFECT_NORMAL_HIT,        120, WATER,      85, 10,   0, SPECIAL
+endc
 	move SURF,         EFFECT_NORMAL_HIT,         90, WATER,     100, 15,   0, SPECIAL
 	move ICE_BEAM,     EFFECT_FREEZE_HIT,         90, ICE,       100, 10,  10, SPECIAL
 	move BLIZZARD,     EFFECT_FREEZE_HIT,        110, ICE,        70,  5,  10, SPECIAL
