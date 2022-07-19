@@ -21,7 +21,11 @@ else
 endc
 	move AERIAL_ACE,   EFFECT_ALWAYS_HIT,         60, FLYING,    100, 20,   0, PHYSICAL
 	move DRAGON_CLAW,  EFFECT_NORMAL_HIT,         80, DRAGON,    100, 15,   0, PHYSICAL
+if DEF(FAITHFUL)
 	move PAY_DAY,      EFFECT_PAY_DAY,            40, NORMAL,    100, 20,   0, PHYSICAL
+else
+	move PAY_DAY,      EFFECT_PAY_DAY,            40, DARK,      100, 20,   0, PHYSICAL
+endc
 	move FIRE_PUNCH,   EFFECT_BURN_HIT,           75, FIRE,      100, 15,  10, PHYSICAL
 	move ICE_PUNCH,    EFFECT_FREEZE_HIT,         75, ICE,       100, 15,  10, PHYSICAL
 	move THUNDERPUNCH, EFFECT_PARALYZE_HIT,       75, ELECTRIC,  100, 15,  10, PHYSICAL
