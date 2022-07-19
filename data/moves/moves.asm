@@ -122,7 +122,11 @@ endc
 	move LEECH_SEED,   EFFECT_LEECH_SEED,          0, GRASS,      90, 10,   0, STATUS
 	move GROWTH,       EFFECT_GROWTH,              0, NORMAL,    100, 20,   0, STATUS
 	move RAZOR_LEAF,   EFFECT_NORMAL_HIT,         55, GRASS,      95, 25,   0, PHYSICAL
+if DEF(FAITHFUL)
 	move SOLAR_BEAM,   EFFECT_SOLAR_BEAM,        120, GRASS,     100, 10,   0, SPECIAL
+else
+	move SOLAR_BEAM,   EFFECT_SOLAR_BEAM,        140, GRASS,     100, 10,   0, SPECIAL
+endc
 	move POISONPOWDER, EFFECT_POISON,              0, POISON,     75, 35,   0, STATUS
 	move STUN_SPORE,   EFFECT_PARALYZE,            0, GRASS,      75, 30,   0, STATUS
 	move SLEEP_POWDER, EFFECT_SLEEP,               0, GRASS,      75, 15,   0, STATUS
