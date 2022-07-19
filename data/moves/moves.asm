@@ -107,7 +107,11 @@ else
 endc
 	move SURF,         EFFECT_NORMAL_HIT,         90, WATER,     100, 15,   0, SPECIAL
 	move ICE_BEAM,     EFFECT_FREEZE_HIT,         90, ICE,       100, 10,  10, SPECIAL
+if DEF(FAITHFUL)
 	move BLIZZARD,     EFFECT_FREEZE_HIT,        110, ICE,        70,  5,  10, SPECIAL
+else
+	move BLIZZARD,     EFFECT_FREEZE_HIT,        110, ICE,        70, 10,  30, SPECIAL
+endc
 	move PSYBEAM,      EFFECT_CONFUSE_HIT,        65, PSYCHIC,   100, 20,  10, SPECIAL
 	move BUBBLE_BEAM,  EFFECT_SPEED_DOWN_HIT,     65, WATER,     100, 20,  10, SPECIAL
 	move AURORA_BEAM,  EFFECT_ATTACK_DOWN_HIT,    65, ICE,       100, 20,  10, SPECIAL
