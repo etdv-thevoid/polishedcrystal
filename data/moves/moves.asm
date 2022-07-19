@@ -142,7 +142,7 @@ endc
 if DEF(FAITHFUL)
 	move DIG,          EFFECT_FLY,                80, GROUND,    100, 10,   0, PHYSICAL
 else
-	move DIG,          EFFECT_FLY,                90, GROUND,    100, 10,   0, PHYSICAL
+	move DIG,          EFFECT_FLY,                90, GROUND,    100, 15,   0, PHYSICAL
 endc
 	move TOXIC,        EFFECT_TOXIC,               0, POISON,     90, 10,   0, STATUS
 	move CONFUSION,    EFFECT_CONFUSE_HIT,        50, PSYCHIC,   100, 25,  10, SPECIAL
