@@ -4197,20 +4197,39 @@ BattleAnim_Hail:
 	anim_wait 8
 	anim_ret
 
+; Polished (more intense version of mega drain animation)
 BattleAnim_GigaDrain:
-	anim_2gfx ANIM_GFX_BUBBLE, ANIM_GFX_CHARGE
+	anim_2gfx ANIM_GFX_CHARGE, ANIM_GFX_SHINE
 	anim_call BattleAnim_FollowEnemyFeet_0
 	anim_bgeffect ANIM_BG_FADE_MONS_TO_BLACK_REPEATING, $0, $0, $10
-	anim_sound 6, 3, SFX_GIGA_DRAIN
-	anim_call BattleAnimSub_Drain
-	anim_wait 48
-	anim_wait 128
+	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_setvar $0
+.loop
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB,  16, 0,   6, 0, $2
+	anim_wait 6
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, -15, 0,   8, 0, $3
+	anim_wait 6
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, -15, 0,   4, 0, $4
+	anim_wait 6
+	anim_incvar
+	anim_jumpvar $8, .done
+	anim_jumpvar $3, .spawn
+	anim_jump .loop
+.spawn
+	anim_obj ANIM_OBJ_ABSORB_CENTER,   5, 4,  11, 0, $0
+	anim_jump .loop
+.done
+	anim_wait 32
 	anim_incbgeffect ANIM_BG_FADE_MONS_TO_BLACK_REPEATING
 	anim_call BattleAnim_ShowMon_0
 	anim_wait 1
-	anim_1gfx ANIM_GFX_SHINE
+	anim_call BattleAnim_FollowEnemyFeet_0
+	anim_bgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING, $0, $1, $40
 	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $0, $0
-.loop
+.loop2
 	anim_sound 0, 0, SFX_METRONOME
 	anim_obj ANIM_OBJ_GLIMMER,   3, 0,   8, 0, $0
 	anim_wait 5
@@ -4222,7 +4241,9 @@ BattleAnim_GigaDrain:
 	anim_wait 5
 	anim_obj ANIM_OBJ_GLIMMER,   5, 0,  10, 4, $0
 	anim_wait 5
-	anim_loop 2, .loop
+	anim_loop 2, .loop2
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING
+	anim_call BattleAnim_ShowMon_0
 	anim_wait 32
 	anim_ret
 
