@@ -4318,15 +4318,19 @@ BattleAnim_Bulldoze:
 	anim_ret
 
 BattleAnim_Rollout:
-	anim_1gfx ANIM_GFX_HIT
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_ROCKS
 	anim_sound 0, 0, SFX_SPARK
 	anim_call BattleAnim_FollowPlayerHead_0
 	anim_bgeffect ANIM_BG_ROLLOUT, $60, $1, $1
 	anim_bgeffect ANIM_BG_BODY_SLAM, $0, $1, $0
 	anim_wait 4
 	anim_sound 0, 1, SFX_MEGA_PUNCH
-	anim_obj ANIM_OBJ_HIT_BIG, -15, 0,   5, 0, $0
-	anim_wait 8
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 128, 56, $0
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 56, $5c
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 56, $e8
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 56, $d0
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 56, $50
+	anim_wait 32
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
