@@ -5527,6 +5527,12 @@ BattleAnim_Sharpen: ; used in BoostGiovannisArmoredMewtwo
 	anim_ret
 
 BattleAnim_GyroBall:
+	anim_1gfx ANIM_GFX_REFLECT
+	anim_obp0 $0
+	anim_sound 0, 0, SFX_RAGE
+	anim_call BattleAnim_FollowEnemyFeet_0
+	anim_call BattleAnimSub_Metallic
+	anim_call BattleAnim_ShowMon_0
 	anim_1gfx ANIM_GFX_WIND
 	anim_obp0 $e4
 .loop
