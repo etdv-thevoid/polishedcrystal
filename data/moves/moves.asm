@@ -289,7 +289,11 @@ endc
 	move BUG_BITE,     EFFECT_BUG_BITE,           60, BUG,       100, 20,   0, PHYSICAL
 	move STEEL_WING,   EFFECT_DEFENSE_UP_HIT,     70, STEEL,      90, 25,  10, PHYSICAL
 	move MEAN_LOOK,    EFFECT_MEAN_LOOK,           0, NORMAL,    100,  5,   0, STATUS
+if DEF(FAITHFUL)
 	move ATTRACT,      EFFECT_ATTRACT,             0, NORMAL,    100, 15,   0, STATUS
+else
+	move ATTRACT,      EFFECT_ATTRACT,             0, FAIRY,     100, 15,   0, STATUS
+endc
 	move SLEEP_TALK,   EFFECT_SLEEP_TALK,          0, NORMAL,    100, 10,   0, STATUS
 	move HEAL_BELL,    EFFECT_HEAL_BELL,           0, NORMAL,    100,  5,   0, STATUS
 	move RETURN,       EFFECT_RETURN,              1, NORMAL,    100, 20,   0, PHYSICAL
