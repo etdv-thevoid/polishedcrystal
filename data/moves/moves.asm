@@ -40,7 +40,11 @@ else
 	move CUT,          EFFECT_NORMAL_HIT,         60, STEEL,     100, 30,   0, PHYSICAL
 endc
 	move GUST,         EFFECT_GUST,               40, FLYING,    100, 35,   0, SPECIAL
+if DEF(FAITHFUL)
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,    100, 35,   0, PHYSICAL
+else
+	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,    100, 30,   0, PHYSICAL
+endc
 	move SUCKER_PUNCH, EFFECT_SUCKER_PUNCH,       70, DARK,      100,  5,   0, PHYSICAL
 if DEF(FAITHFUL)
 	move FLY,          EFFECT_FLY,                90, FLYING,     95, 15,   0, PHYSICAL
