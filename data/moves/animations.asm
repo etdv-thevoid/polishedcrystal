@@ -4230,12 +4230,12 @@ BattleAnim_GigaDrain:
 	anim_jumpvar $1, .loop
 	anim_jumpvar $2, .loop
 	anim_sound 6, 3, SFX_WATER_GUN
-	anim_obj ANIM_OBJ_ABSORB, -16, 0,   7, 0, $3
+	anim_obj ANIM_OBJ_ABSORB, -16, 0,   10, 0, $5
 	anim_wait 6
 	anim_sound 6, 3, SFX_WATER_GUN
-	anim_obj ANIM_OBJ_ABSORB, -16, 0,   5, 0, $4
+	anim_obj ANIM_OBJ_ABSORB, -16, 0,   2, 0, $6
 	anim_wait 6
-	anim_jumpvar $3, .spawn
+	anim_jumpvar $4, .spawn
 	anim_jumpvar $8, .done
 	anim_jump .loop
 .spawn
