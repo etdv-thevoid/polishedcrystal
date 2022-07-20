@@ -4217,6 +4217,7 @@ BattleAnim_GigaDrain:
 	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 	anim_setvar $0
 .loop
+	anim_incvar
 	anim_sound 6, 3, SFX_WATER_GUN
 	anim_obj ANIM_OBJ_ABSORB,  16, 0,   6, 0, $2
 	anim_wait 6
@@ -4226,9 +4227,16 @@ BattleAnim_GigaDrain:
 	anim_sound 6, 3, SFX_WATER_GUN
 	anim_obj ANIM_OBJ_ABSORB, -15, 0,   4, 0, $4
 	anim_wait 6
-	anim_incvar
-	anim_jumpvar $8, .done
+	anim_jumpvar $1, .loop
+	anim_jumpvar $2, .loop
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, -16, 0,   7, 0, $3
+	anim_wait 6
+	anim_sound 6, 3, SFX_WATER_GUN
+	anim_obj ANIM_OBJ_ABSORB, -16, 0,   5, 0, $4
+	anim_wait 6
 	anim_jumpvar $3, .spawn
+	anim_jumpvar $8, .done
 	anim_jump .loop
 .spawn
 	anim_obj ANIM_OBJ_ABSORB_CENTER,   5, 4,  11, 0, $0
