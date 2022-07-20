@@ -4173,9 +4173,24 @@ BattleAnim_Hail:
 
 ; Polished (mega drain + second half of synthesis)
 BattleAnim_GigaDrain:
-	anim_call BattleAnim_MegaDrain
+	anim_2gfx ANIM_GFX_CHARGE, ANIM_GFX_SHINE
+	anim_call BattleAnimSub_FollowEnemyFeet_0
+	anim_bgeffect ANIM_BG_FADE_MONS_TO_BLACK_REPEATING, $0, $0, $10
+	anim_setvar $0
+.loop
+	anim_call BattleAnimSub_Sap
+	anim_incvar
+	anim_jumpvar $7, .done
+	anim_jumpvar $2, .spawn
+	anim_jump .loop
+.spawn
+	anim_obj ANIM_OBJ_ABSORB_CENTER,   5, 4,  11, 0, $0
+	anim_jump .loop
+.done
+	anim_wait 32
+	anim_incbgeffect ANIM_BG_FADE_MONS_TO_BLACK_REPEATING
+	anim_call BattleAnimSub_ShowMon_0
 	anim_wait 1
-	anim_1gfx ANIM_GFX_SHINE
 	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $0, $0
 	anim_call BattleAnimSub_Glimmer2
 	anim_wait 32
