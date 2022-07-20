@@ -4181,11 +4181,19 @@ BattleAnim_GigaDrain:
 .loop
 	anim_call BattleAnimSub_Sap
 	anim_incvar
-	anim_jumpvar $8, .done
-	anim_jumpvar $3, .spawn
+	anim_jumpvar $7, .done
+	anim_jumpvar $2, .spawn
 	anim_jump .loop
 .spawn
-	anim_obj ANIM_OBJ_ABSORB_CENTER,   5, 4,  11, 0, $0
+	anim_obj ANIM_OBJ_ABSORB_CENTER,   6, 0,  10, 4, $0
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $0
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $8
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $10
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $18
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $20
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $28
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $30
+	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $38
 	anim_jump .loop
 .done
 	anim_wait 32
