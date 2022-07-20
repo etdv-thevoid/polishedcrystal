@@ -4183,9 +4183,6 @@ BattleAnim_GigaDrain:
 	anim_incvar
 	anim_jumpvar $8, .done
 	anim_jumpvar $3, .spawn
-	anim_jumpvar $2, .loop
-	anim_jumpvar $1, .loop
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
 	anim_jump .loop
 .spawn
 	anim_obj ANIM_OBJ_ABSORB_CENTER,   5, 4,  11, 0, $0
