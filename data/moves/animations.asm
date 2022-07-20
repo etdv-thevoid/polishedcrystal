@@ -313,6 +313,7 @@ BattleAnim_Moonblast:
 	anim_call BattleAnimSub_Glimmer
 	anim_ret
 
+; Polished
 BattleAnim_PlayRough:
 	anim_1gfx ANIM_GFX_HIT
 .loop
@@ -572,6 +573,7 @@ BattleAnim_Psn:
 BattleAnim_Sap:
 	anim_1gfx ANIM_GFX_CHARGE
 	anim_call BattleAnimSub_Sap
+	anim_wait 10
 	anim_ret
 
 BattleAnim_Frz:
@@ -1938,6 +1940,7 @@ BattleAnim_Confusion:
 	anim_call BattleAnimSub_ShowMon_1
 	anim_ret
 
+; Polished
 BattleAnim_Earthquake:
 	anim_1gfx ANIM_GFX_ROCKS
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $60, $4, $10
@@ -2112,6 +2115,7 @@ BattleAnim_MindReader: ; removed
 	anim_wait 32
 	anim_ret
 
+; Polished
 BattleAnim_DizzyPunch:
 	anim_2gfx ANIM_GFX_STATUS, ANIM_GFX_HIT
 	anim_sound 0, 1, SFX_COMET_PUNCH
@@ -2363,6 +2367,7 @@ BattleAnim_CloseCombat:
 	anim_wait 16
 	anim_ret
 
+; Polished
 BattleAnim_Hurricane:
 	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_HIT
 .loop1
@@ -2632,6 +2637,7 @@ BattleAnim_Swift:
 	anim_wait 64
 	anim_ret
 
+; Polished
 BattleAnim_Crabhammer:
 	anim_1gfx ANIM_GFX_HIT
 	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
@@ -3268,6 +3274,7 @@ BattleAnim_Barrier:
 	anim_loop 2, .loop
 	anim_ret
 
+; Polished
 BattleAnim_Waterfall:
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnimSub_FollowPlayerHead_0
@@ -3887,6 +3894,7 @@ BattleAnim_MudSlap:
 	anim_call BattleAnimSub_SandOrMud
 	anim_ret
 
+; Polished
 BattleAnim_Octazooka:
 	anim_3gfx ANIM_GFX_HAZE, ANIM_GFX_EGG, ANIM_GFX_SMOKE
 	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
@@ -4257,6 +4265,7 @@ BattleAnim_Bulldoze:
 	anim_incbgeffect ANIM_BG_SHAKE_SCREEN_X
 	anim_ret
 
+; Polished
 BattleAnim_Rollout:
 	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_ROCKS
 	anim_sound 0, 0, SFX_SPARK
@@ -5237,6 +5246,7 @@ BattleAnim_Sharpen: ; used in BoostGiovannisArmoredMewtwo
 	anim_call BattleAnimSub_ShowMon_0
 	anim_ret
 
+; Polished
 BattleAnim_GyroBall:
 	anim_1gfx ANIM_GFX_REFLECT
 	anim_obp0 $0
@@ -5552,7 +5562,7 @@ BattleAnimSub_Sap:
 	anim_wait 6
 	anim_sound 6, 3, SFX_WATER_GUN
 	anim_obj ANIM_OBJ_ABSORB, -15, 0,   4, 0, $4
-	anim_wait 16
+	anim_wait 6
 	anim_ret
 
 BattleAnimSub_Drain:
