@@ -4171,41 +4171,13 @@ BattleAnim_Hail:
 	anim_wait 8
 	anim_ret
 
-; Polished (more intense version of mega drain animation)
+; Polished (mega drain + second half of synthesis)
 BattleAnim_GigaDrain:
-	anim_2gfx ANIM_GFX_CHARGE, ANIM_GFX_SHINE
-	anim_call BattleAnimSub_FollowEnemyFeet_0
-	anim_bgeffect ANIM_BG_FADE_MONS_TO_BLACK_REPEATING, $0, $0, $10
-	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
-	anim_setvar $0
-.loop
-	anim_call BattleAnimSub_Sap
-	anim_incvar
-	anim_jumpvar $7, .done
-	anim_jumpvar $2, .spawn
-	anim_jump .loop
-.spawn
-	anim_obj ANIM_OBJ_ABSORB_CENTER,   6, 0,  10, 4, $0
-	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $0
-	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $8
-	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $10
-	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $18
-	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $20
-	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $28
-	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $30
-	anim_obj ANIM_OBJ_SOLAR_BEAM_CHARGE,   6, 0,  10, 4, $38
-	anim_jump .loop
-.done
-	anim_wait 32
-	anim_incbgeffect ANIM_BG_FADE_MONS_TO_BLACK_REPEATING
-	anim_call BattleAnimSub_ShowMon_0
+	anim_call BattleAnim_MegaDrain
 	anim_wait 1
-	anim_call BattleAnimSub_FollowEnemyFeet_0
-	anim_bgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING, $0, $1, $40
+	anim_1gfx ANIM_GFX_SHINE
 	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $0, $0
 	anim_call BattleAnimSub_Glimmer2
-	anim_incbgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING
-	anim_call BattleAnimSub_ShowMon_0
 	anim_wait 32
 	anim_ret
 
