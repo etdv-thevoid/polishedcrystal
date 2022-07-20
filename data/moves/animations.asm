@@ -1977,6 +1977,7 @@ BattleAnim_Confusion:
 	anim_ret
 
 BattleAnim_Earthquake:
+	anim_1gfx ANIM_GFX_ROCKS
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $60, $4, $10
 .loop
 	anim_sound 0, 1, SFX_EMBER
@@ -1990,7 +1991,9 @@ BattleAnim_Earthquake:
 	anim_wait 2
 	anim_obj ANIM_OBJ_SMALL_ROCK, -15, 0,   8, 4, $30
 	anim_wait 16
-	anim_loop 4, .loop
+	anim_sound 0, 1, SFX_EMBER
+	anim_wait 24
+	anim_loop 2, .loop
 	anim_ret
 
 BattleAnim_Growl:
