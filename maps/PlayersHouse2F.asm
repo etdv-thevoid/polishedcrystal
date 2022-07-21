@@ -119,6 +119,7 @@ endr
 	giveitem MINT_LEAF, 99
 	giveitem BOTTLE_CAP, 99
 	giveitem BIG_NUGGET, 99
+	giveitem ARMOR_SUIT, 1
 	; all decorations except Diploma
 for x, EVENT_DECO_BED_1, EVENT_DECO_BIG_LAPRAS_DOLL + 1
 	setevent x
@@ -241,6 +242,7 @@ endr
 	loadmem wPartyMon2PP+3, 10
 	; variant form test
 	givepoke GRAVELER, ALOLAN_FORM, 50
+	loadmem wPartyMon3Shiny, SHINY_MASK
 	givepoke WEEZING, GALARIAN_FORM, 50
 	givepoke DITTO, 50
 	loadmem wPartyMon5Personality, HIDDEN_ABILITY | QUIRKY
@@ -331,7 +333,7 @@ PokemonJournalProfElmScript:
 PlayersHousePC:
 	opentext
 	special Special_PlayersHousePC
-	iftrue .Warp
+	iftruefwd .Warp
 	endtext
 .Warp:
 	warp NONE, 0, 0

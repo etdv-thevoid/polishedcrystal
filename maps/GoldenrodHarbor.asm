@@ -27,14 +27,14 @@ GoldenrodHarbor_MapScriptHeader:
 	object_event  6, 14, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerSwimmerfKatie, -1
 	object_event 23, 28, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerSwimmermJames, -1
 	object_event 22, 19, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, GoldenrodHarborLass2Text, -1
-	object_event  6, 26, SPRITE_SAILBOAT, SPRITEMOVEDATA_SAILBOAT_TOP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, end, NULL, -1
-	object_event  6, 26, SPRITE_SAILBOAT, SPRITEMOVEDATA_SAILBOAT_BOTTOM, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, end, NULL, -1
+	object_event  6, 26, SPRITE_SAILBOAT, SPRITEMOVEDATA_SAILBOAT_TOP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptext, GoldenrodHarborSailboatText, -1
+	object_event  6, 26, SPRITE_SAILBOAT, SPRITEMOVEDATA_SAILBOAT_BOTTOM, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptext, GoldenrodHarborSailboatText, -1
 
 GoldenrodHarborFisherScript:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_HYPER_VOICE_INTRO
-	iftrue GoldenrodHarborTutorHyperVoiceScript
+	iftruefwd GoldenrodHarborTutorHyperVoiceScript
 	writetext GoldenrodHarborFisherText
 	waitbutton
 	setevent EVENT_LISTENED_TO_HYPER_VOICE_INTRO
@@ -42,14 +42,14 @@ GoldenrodHarborTutorHyperVoiceScript:
 	writetext Text_GoldenrodHarborTutorHyperVoice
 	waitbutton
 	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
+	iffalsefwd .NoSilverLeaf
 	writetext Text_GoldenrodHarborTutorQuestion
 	yesorno
-	iffalse .TutorRefused
+	iffalsefwd .TutorRefused
 	setval HYPER_VOICE
 	writetext ClearText
 	special Special_MoveTutor
-	ifequal $0, .TeachMove
+	ifequalfwd $0, .TeachMove
 .TutorRefused
 	jumpopenedtext Text_GoldenrodHarborTutorRefused
 
@@ -108,16 +108,16 @@ GoldenrodHarborPokefanmScript:
 	loadmenu .MenuData
 	verticalmenu
 	closewindow
-	ifequal $1, .MagikarpDoll
-	ifequal $2, .MarillDoll
-	ifequal $3, .OctilleryDoll
+	ifequalfwd $1, .MagikarpDoll
+	ifequalfwd $2, .MarillDoll
+	ifequalfwd $3, .OctilleryDoll
 	endtext
 
 .MagikarpDoll:
 	checkmoney $0, 1400
-	ifequal $2, .NotEnoughMoney
+	ifequalfwd $2, .NotEnoughMoney
 	checkevent EVENT_DECO_MAGIKARP_DOLL
-	iftrue .AlreadyBought
+	iftruefwd .AlreadyBought
 	takemoney $0, 1400
 	setevent EVENT_DECO_MAGIKARP_DOLL
 	writetext GoldenrodHarborMagikarpDollText
@@ -129,9 +129,9 @@ GoldenrodHarborPokefanmScript:
 
 .MarillDoll:
 	checkmoney $0, 5600
-	ifequal $2, .NotEnoughMoney
+	ifequalfwd $2, .NotEnoughMoney
 	checkevent EVENT_DECO_MARILL_DOLL
-	iftrue .AlreadyBought
+	iftruefwd .AlreadyBought
 	takemoney $0, 5600
 	setevent EVENT_DECO_MARILL_DOLL
 	writetext GoldenrodHarborMarillDollText
@@ -143,9 +143,9 @@ GoldenrodHarborPokefanmScript:
 
 .OctilleryDoll:
 	checkmoney $0, 11200
-	ifequal $2, .NotEnoughMoney
+	ifequalfwd $2, .NotEnoughMoney
 	checkevent EVENT_DECO_OCTILLERY_DOLL
-	iftrue .AlreadyBought
+	iftruefwd .AlreadyBought
 	takemoney $0, 11200
 	setevent EVENT_DECO_OCTILLERY_DOLL
 	writetext GoldenrodHarborOctilleryDollText
@@ -189,16 +189,16 @@ GoldenrodHarborYoungsterScript:
 	loadmenu .MenuData
 	verticalmenu
 	closewindow
-	ifequal $1, .MagnaPlant
-	ifequal $2, .TropicPlant
-	ifequal $3, .JumboPlant
+	ifequalfwd $1, .MagnaPlant
+	ifequalfwd $2, .TropicPlant
+	ifequalfwd $3, .JumboPlant
 	endtext
 
 .MagnaPlant:
 	checkmoney $0, 6400
-	ifequal $2, .NotEnoughMoney
+	ifequalfwd $2, .NotEnoughMoney
 	checkevent EVENT_DECO_PLANT_1
-	iftrue .AlreadyBought
+	iftruefwd .AlreadyBought
 	takemoney $0, 6400
 	setevent EVENT_DECO_PLANT_1
 	writetext GoldenrodHarborMagnaPlantText
@@ -210,9 +210,9 @@ GoldenrodHarborYoungsterScript:
 
 .TropicPlant:
 	checkmoney $0, 9600
-	ifequal $2, .NotEnoughMoney
+	ifequalfwd $2, .NotEnoughMoney
 	checkevent EVENT_DECO_PLANT_2
-	iftrue .AlreadyBought
+	iftruefwd .AlreadyBought
 	takemoney $0, 9600
 	setevent EVENT_DECO_PLANT_2
 	writetext GoldenrodHarborTropicPlantText
@@ -224,9 +224,9 @@ GoldenrodHarborYoungsterScript:
 
 .JumboPlant:
 	checkmoney $0, 12800
-	ifequal $2, .NotEnoughMoney
+	ifequalfwd $2, .NotEnoughMoney
 	checkevent EVENT_DECO_PLANT_3
-	iftrue .AlreadyBought
+	iftruefwd .AlreadyBought
 	takemoney $0, 12800
 	setevent EVENT_DECO_PLANT_3
 	writetext GoldenrodHarborJumboPlantText
@@ -437,4 +437,9 @@ GoldenrodHarborSignText:
 GoldenrodHarborCrateSignText:
 	text "A crate full of"
 	line "rare items!"
+	done
+
+GoldenrodHarborSailboatText:
+	text "It's a sailboat"
+	line "named SeaKing."
 	done
