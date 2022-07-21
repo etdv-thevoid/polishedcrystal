@@ -593,7 +593,7 @@ PCIconLoop:
 	push hl
 	push de
 	push bc
-	farcall GetStorageIcon_a
+	farcall GetStorageMini_a
 	pop bc
 	pop de
 	pop hl
@@ -704,14 +704,17 @@ WriteIconPaletteData:
 	pop bc
 
 if !DEF(MONOCHROME)
-	; TODO: per-mon palettes
 	ld a, c
 	ld [hli], a
 	ld a, b
 	ld [hli], a
 	ld a, e
 	ld [hli], a
-	ld [hl], d
+	ld a, d
+	ld [hld], a
+	dec hl
+	dec hl
+	farcall VaryBGPalByTempMonDVs
 else
 	ld [hl], LOW(PAL_MONOCHROME_WHITE) ; no-optimize *hl++|*hl-- = N
 	inc hl
@@ -1597,7 +1600,7 @@ BillsPC_SetIcon:
 	call BillsPC_SetPals
 	call DelayFrame
 	pop hl
-	farjp GetStorageIcon
+	farjp GetStorageMini
 
 BillsPC_MoveIconData:
 ; Copies icon data from slot bc to slot de, then blanks slot bc.
@@ -2468,7 +2471,7 @@ BillsPC_UpdateStorage_CheckMewtwo:
 	ld [wCurIconForm], a
 	call BillsPC_GetMonTileAddr
 	push bc
-	farcall GetStorageIcon
+	farcall GetStorageMini
 	pop bc
 	call WriteIconPaletteData
 

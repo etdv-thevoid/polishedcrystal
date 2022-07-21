@@ -33,14 +33,14 @@ PsychicInverScript:
 	setflag ENGINE_FOUGHT_PSYCHIC_INVER
 	winlosstext PsychicInverBeatenText, 0
 	setlasttalked PSYCHICINVERSHOUSE_INVER
-; TODO: pick six random Pokémon from a larger pool
+	special PickPsychicInverParty
 	loadtrainer INVER, 1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_INVERSE
 	startbattle
 	reloadmapafterbattle
 	opentext
 	readmem wInverseBattleScore
-	ifequal 0, .Score0
+	ifequalfwd 0, .Score0
 	ifgreater 127, .Score0 ; negative
 	ifless 4, .Score1_3
 	ifless 7, .Score4_6
