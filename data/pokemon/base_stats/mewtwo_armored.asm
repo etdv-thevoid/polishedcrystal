@@ -1,18 +1,13 @@
 	db 106, 110,  90, 130, 154,  90 ; 680 BST
 	;   hp  atk  def  spd  sat  sdf
 
-if DEF(FAITHFUL)
-	db PSYCHIC, PSYCHIC ; type
-else
 	db PSYCHIC, STEEL ; type
-endc
 	db 3 ; catch rate
 	db 220 ; base exp
-	db ALWAYS_ITEM_2, PETAYA_BERRY ; held items
+	db ALWAYS_ITEM_2, BERSERK_GENE ; held items
 	dn GENDER_UNKNOWN, HATCH_UNKNOWN ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/mewtwo_armored/front.dimensions"
-	abilities_for MEWTWO, PRESSURE, INSOMNIA, UNNERVE
-	; assumes identical abilities to non-armored
+	abilities_for MEWTWO_ARMORED, BATTLE_ARMOR, BATTLE_ARMOR, BATTLE_ARMOR
 	db GROWTH_SLOW ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups
 
