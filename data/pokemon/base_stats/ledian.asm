@@ -16,7 +16,11 @@ endc
 	db NO_ITEM, NO_ITEM ; held items
 	dn GENDER_F50, HATCH_FAST ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/ledian/front.dimensions"
+if DEF(FAITHFUL)
 	abilities_for LEDIAN, SWARM, EARLY_BIRD, IRON_FIST
+else
+	abilities_for LEDIAN, LEVITATE, EARLY_BIRD, IRON_FIST
+endc
 	db GROWTH_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
 

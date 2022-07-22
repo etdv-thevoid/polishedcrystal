@@ -7,7 +7,11 @@
 	db NO_ITEM, NO_ITEM ; held items
 	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/venonat/front.dimensions"
+if DEF(FAITHFUL)
 	abilities_for VENONAT, COMPOUND_EYES, TINTED_LENS, RUN_AWAY
+else
+	abilities_for VENONAT, RUN_AWAY, COMPOUND_EYES, SHIELD_DUST
+endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
 

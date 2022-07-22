@@ -1,13 +1,21 @@
 	db  40,  60,  40,  30,  40,  40 ; 250 BST
 	;   hp  atk  def  spd  sat  sdf
 
+if DEF(FAITHFUL)
 	db BUG, POISON ; type
+else
+	db BUG, DARK ; type
+endc
 	db 255 ; catch rate
 	db 54 ; base exp
 	db NO_ITEM, NO_ITEM ; held items
 	dn GENDER_F50, HATCH_FAST ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/spinarak/front.dimensions"
+if DEF(FAITHFUL)
 	abilities_for SPINARAK, SWARM, INSOMNIA, SNIPER
+else
+	abilities_for SPINARAK, POISON_TOUCH, INSOMNIA, SNIPER
+endc
 	db GROWTH_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
 

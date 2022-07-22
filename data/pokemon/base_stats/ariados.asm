@@ -16,7 +16,11 @@ endc
 	db NO_ITEM, NO_ITEM ; held items
 	dn GENDER_F50, HATCH_FAST ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/ariados/front.dimensions"
+if DEF(FAITHFUL)
 	abilities_for ARIADOS, SWARM, INSOMNIA, SNIPER
+else
+	abilities_for ARIADOS, POISON_TOUCH, INSOMNIA, SNIPER
+endc
 	db GROWTH_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
 

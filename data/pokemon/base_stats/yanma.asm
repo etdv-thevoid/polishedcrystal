@@ -7,7 +7,11 @@
 	db NO_ITEM, WIDE_LENS ; held items
 	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/yanma/front.dimensions"
+if DEF(FAITHFUL)
 	abilities_for YANMA, SPEED_BOOST, COMPOUND_EYES, FRISK
+else
+	abilities_for YANMA, FRISK, COMPOUND_EYES, SPEED_BOOST
+endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
 

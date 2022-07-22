@@ -6,13 +6,21 @@ else
 	;   hp  atk  def  spd  sat  sdf
 endc
 
+if DEF(FAITHFUL)
 	db BUG, FLYING ; type
+else
+	db BUG, FIGHTING ; type
+endc
 	db 255 ; catch rate
 	db 54 ; base exp
 	db NO_ITEM, NO_ITEM ; held items
 	dn GENDER_F50, HATCH_FAST ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/ledyba/front.dimensions"
+if DEF(FAITHFUL)
 	abilities_for LEDYBA, SWARM, EARLY_BIRD, RATTLED
+else
+	abilities_for LEDYBA, LEVITATE, EARLY_BIRD, IRON_FIST
+endc
 	db GROWTH_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
 

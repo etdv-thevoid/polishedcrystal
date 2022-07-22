@@ -14,7 +14,7 @@ endc
 if DEF(FAITHFUL)
 	abilities_for YANMEGA, SPEED_BOOST, TINTED_LENS, FRISK
 else
-	abilities_for YANMEGA, SPEED_BOOST, TINTED_LENS, LEVITATE
+	abilities_for YANMEGA, LEVITATE, TINTED_LENS, SPEED_BOOST
 endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
