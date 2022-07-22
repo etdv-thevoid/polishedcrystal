@@ -7,7 +7,11 @@
 	db NO_ITEM, EVERSTONE ; held items
 	dn GENDER_F50, HATCH_FAST ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/graveler_alolan/front.dimensions"
-	abilities_for GRAVELER_ALOLAN, MAGNET_PULL, STURDY, GALVANIZE
+if DEF(FAITHFUL)
+	abilities_for GRAVELER_ALOLAN, STURDY, MAGNET_PULL, GALVANIZE
+else
+	abilities_for GRAVELER_ALOLAN, STURDY, ROCK_HEAD, GALVANIZE
+endc
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
 
