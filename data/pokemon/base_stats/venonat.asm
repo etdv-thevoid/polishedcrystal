@@ -10,7 +10,7 @@
 if DEF(FAITHFUL)
 	abilities_for VENONAT, COMPOUND_EYES, TINTED_LENS, RUN_AWAY
 else
-	abilities_for VENONAT, RUN_AWAY, COMPOUND_EYES, SHIELD_DUST
+	abilities_for VENONAT, SHIELD_DUST, COMPOUND_EYES, RUN_AWAY
 endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
