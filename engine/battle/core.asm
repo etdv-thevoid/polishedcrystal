@@ -3291,11 +3291,8 @@ PursuitSwitch:
 	farcall CheckOpponentWentFirst
 	ret z
 
-	ld a, BATTLE_VARS_MOVE
+	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	ld b, a
-	call GetMoveEffect
-	ld a, b
 	cp EFFECT_PURSUIT
 	ret nz
 	call PerformMove
@@ -6685,6 +6682,10 @@ GiveBattleEVs:
 .check_item
 	; check held item
 	push bc
+
+	; This is a bug. The correct behaviour is to consider the item of the mon
+	; getting EVs, not the item of the mon currently in battle.
+	; WONTFIX because this has helpful synergy with EXP Share.
 	ld hl, wBattleMonItem
 	ld b, [hl]
 	farcall GetItemHeldEffect

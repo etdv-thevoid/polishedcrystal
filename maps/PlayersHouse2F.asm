@@ -119,6 +119,7 @@ endr
 	giveitem MINT_LEAF, 99
 	giveitem BOTTLE_CAP, 99
 	giveitem BIG_NUGGET, 99
+	giveitem ARMOR_SUIT, 1
 	; all decorations except Diploma
 for x, EVENT_DECO_BED_1, EVENT_DECO_BIG_LAPRAS_DOLL + 1
 	setevent x
@@ -272,10 +273,10 @@ FillPokedex:
 	ld hl, wPokedexCaught
 .Fill:
 	ld a, %11111111
-	ld bc, NUM_SPECIES / 8
+	ld bc, NUM_UNIQUE_POKEMON / 8
 	rst ByteFill
-if NUM_SPECIES % 8
-	ld [hl], 2**(NUM_SPECIES % 8) - 1
+if NUM_UNIQUE_POKEMON % 8
+	ld [hl], 2**(NUM_UNIQUE_POKEMON % 8) - 1
 endc
 	ret
 
@@ -332,7 +333,7 @@ PokemonJournalProfElmScript:
 PlayersHousePC:
 	opentext
 	special Special_PlayersHousePC
-	iftrue .Warp
+	iftruefwd .Warp
 	endtext
 .Warp:
 	warp NONE, 0, 0
