@@ -99,8 +99,8 @@ GivePokerusAndConvertBerries:
 
 .done_spread
 ; Small chance to convert Oran / Sitrus Berries held by Shuckle to Berry Juice.
-; Based on an old playground rumor, Shuckle in PC also have an even smaller
-;   chance to convert any held Berry Juice into a Rare Candy.
+; Based on an old playground rumor, Shuckle in PC also have an even chance
+;   to convert any held Berry Juice into a Rare Candy.
 	pop bc
 	ld b, c
 	ld hl, wPartyMon1Species
@@ -128,9 +128,6 @@ GivePokerusAndConvertBerries:
 	cp BERRY_JUICE
 	jr nz, .next_pkmn
 ; .convert_shuckle_juice fallthrough
-	call Random
-	and $7f ; 128/256 * 16/256 = 1/32 chance
-	jr nz, .next_pkmn
 	ld a, RARE_CANDY
 	ld [hl], a
 	jr .next_pkmn
