@@ -108,7 +108,7 @@ GivePokerusAndConvertBerries:
 	assert MON_SPECIES + 1 == MON_ITEM
 	ld a, [hli]
 	cp LOW(SHUCKLE)
-	jr nz, .next_pkmn
+	jr nz, .no_berry_juice
 	push hl
 	assert !HIGH(SHUCKLE)
 	ld de, MON_FORM - MON_ITEM
@@ -116,25 +116,25 @@ GivePokerusAndConvertBerries:
 	ld a, [hl]
 	pop hl
 	and EXTSPECIES_MASK
-	jr nz, .next_pkmn
+	jr nz, .no_berry_juice
 	call Random
 	and $f ; 16/256 = 1/16 chance
-	jr nz, .next_pkmn
+	jr nz, .no_berry_juice
 	ld a, [hl]
 	cp ORAN_BERRY
 	jr z, .convert_shuckle_berry
 	cp SITRUS_BERRY
 	jr z, .convert_shuckle_berry
 	cp BERRY_JUICE
-	jr nz, .next_pkmn
+	jr nz, .no_berry_juice
 ; .convert_shuckle_juice fallthrough
 	ld a, RARE_CANDY
 	ld [hl], a
-	jr .next_pkmn
+	jr .no_berry_juice
 .convert_shuckle_berry
 	ld a, BERRY_JUICE
 	ld [hl], a
-.next_pkmn
+.no_berry_juice
 	ld de, PARTYMON_STRUCT_LENGTH - 1
 	add hl, de
 	dec c
