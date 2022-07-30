@@ -17,7 +17,11 @@ endc
 	db NO_ITEM, NEVERMELTICE ; held items
 	dn GENDER_F50, HATCH_FAST ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/delibird/front.dimensions"
+if DEF(FAITHFUL)
 	abilities_for DELIBIRD, VITAL_SPIRIT, HUSTLE, INSOMNIA
+else
+	abilities_for DELIBIRD, VITAL_SPIRIT, HUSTLE, SNOW_CLOAK
+endc
 	db GROWTH_FAST ; growth rate
 	dn EGG_WATER_1, EGG_GROUND ; egg groups
 

@@ -12,7 +12,11 @@ endc
 	db SHED_SHELL, SILVERPOWDER ; held items
 	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/venomoth/front.dimensions"
+if DEF(FAITHFUL)
 	abilities_for VENOMOTH, SHIELD_DUST, TINTED_LENS, WONDER_SKIN
+else
+	abilities_for VENOMOTH, LEVITATE, TINTED_LENS, WONDER_SKIN
+endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
 
