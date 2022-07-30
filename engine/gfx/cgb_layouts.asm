@@ -750,7 +750,7 @@ _CGB_TrainerCard3:
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 
-	ld a, SABRINA ; BLAINE
+	ld a, MISTY
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 
@@ -758,11 +758,11 @@ _CGB_TrainerCard3:
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 
-	ld a, MISTY
+	ld a, JANINE
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 
-	ld a, JANINE
+	ld a, SABRINA ; BLAINE
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 
@@ -776,22 +776,22 @@ _CGB_TrainerCard3:
 	ld c, 8 palettes
 	call LoadPalettes
 
-	; Lt.Surge
+	; Brock
 	hlcoord 3, 10, wAttrmap
 	lb bc, 3, 3
-	ld a, $4
+	ld a, $2
 	call FillBoxWithByte
 
-	; Sabrina
+	; Misty
 	hlcoord 7, 10, wAttrmap
 	lb bc, 3, 3
 	ld a, $3
 	call FillBoxWithByte
 
-	; Misty
+	; Lt.Surge
 	hlcoord 11, 10, wAttrmap
 	lb bc, 3, 3
-	ld a, $5
+	ld a, $4
 	call FillBoxWithByte
 
 	; Erika
@@ -803,19 +803,19 @@ _CGB_TrainerCard3:
 	; Janine
 	hlcoord 3, 13, wAttrmap
 	lb bc, 3, 3
-	ld a, $6
+	ld a, $5
 	call FillBoxWithByte
 
-	; Brock
+	; Sabrina
 	hlcoord 7, 13, wAttrmap
 	lb bc, 3, 3
-	ld a, $2
+	ld a, $6
 	call FillBoxWithByte
 
 	; Blaine
 	hlcoord 11, 13, wAttrmap
 	lb bc, 3, 3
-	ld a, $3
+	ld a, $6
 	call FillBoxWithByte
 
 	; Blue
