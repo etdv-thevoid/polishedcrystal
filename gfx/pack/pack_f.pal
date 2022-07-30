@@ -19,19 +19,19 @@ if !DEF(MONOCHROME)
 	RGB 31, 21, 07
 	RGB 18, 24, 07
 	RGB 00, 00, 00
-; Balls + TM/HM
+; Balls + Berries
 	RGB 31, 31, 31
 	RGB 31, 21, 07
-	RGB 20, 11, 29
-	RGB 00, 00, 00
-; Berries + TM/HM
-	RGB 31, 31, 31
 	RGB 31, 28, 15
-	RGB 20, 11, 29
 	RGB 00, 00, 00
-; Berries + Key
+; TM/HM + Berries
 	RGB 31, 31, 31
+	RGB 20, 11, 29
 	RGB 31, 28, 15
+	RGB 00, 00, 00
+; TM/HM + Key
+	RGB 31, 31, 31
+	RGB 20, 11, 29
 	RGB 31, 12, 12
 	RGB 00, 00, 00
 ; item icon
