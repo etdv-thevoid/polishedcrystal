@@ -315,6 +315,10 @@ ChikoritaPokeBallScript:
 	; fallthrough
 
 ElmDirectionsScript:
+	; force perfect starter DVs 
+	loadmem wPartyMon1DVs+0, $ff
+	loadmem wPartyMon1DVs+1, $ff
+	loadmem wPartyMon1DVs+2, $ff
 	turnobject PLAYER, UP
 if !DEF(DEBUG)
 	showtext ElmDirectionsText1
