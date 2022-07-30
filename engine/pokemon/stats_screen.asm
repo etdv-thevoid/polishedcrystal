@@ -410,12 +410,12 @@ StatsScreen_LoadGFX:
 	call StackJumpTable
 
 .Jumptable:
-	dw .PinkPage
-	dw .GreenPage
-	dw .BluePage
-	dw .OrangePage
+	dw .InfoPage
+	dw .MemoPage
+	dw .StatsPage
+	dw .MovesPage
 
-.PinkPage:
+.InfoPage:
 	ld de, .Status_Type
 	hlcoord 0, 9
 	rst PlaceString
@@ -593,7 +593,7 @@ StatsScreen_LoadGFX:
 .PkrsStr:
 	db "#rus@"
 
-.GreenPage:
+.MovesPage:
 	ld de, .Item
 	hlcoord 0, 8
 	rst PlaceString
@@ -633,7 +633,7 @@ StatsScreen_LoadGFX:
 .Move:
 	db "Moves@"
 
-.BluePage:
+.StatsPage:
 	hlcoord 0, 9
 	predef DrawPlayerHP
 	call .PlaceNatureInfo
@@ -642,11 +642,11 @@ StatsScreen_LoadGFX:
 	ld de, SCREEN_WIDTH
 	ld b, 10
 	ld a, $31 ; vertical divider
-.BluePageVerticalDivider:
+.StatsPageVerticalDivider:
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .BluePageVerticalDivider
+	jr nz, .StatsPageVerticalDivider
 	hlcoord 11, 8
 	ld bc, 6
 	farcall PrintTempMonStats
@@ -690,7 +690,7 @@ StatsScreen_LoadGFX:
 .NatureString:
 	db "Nature/@"
 
-.OrangePage:
+.MemoPage:
 ; Fourth stats page code by TPP Anniversary Crystal 251
 ; Ported by FIQ
 	call TN_PrintToD
