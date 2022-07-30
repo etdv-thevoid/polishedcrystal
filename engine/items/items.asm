@@ -12,8 +12,8 @@ _ReceiveItem::
 	dw .Item
 	dw .Medicine
 	dw .Ball
-	dw DoNothing
 	dw .Berry
+	dw DoNothing
 	dw DoNothing
 
 .Item:
@@ -46,8 +46,8 @@ _TossItem::
 	dw .Item
 	dw .Medicine
 	dw .Ball
-	dw DoNothing
 	dw .Berry
+	dw DoNothing
 	dw DoNothing
 
 .Medicine:
@@ -82,8 +82,8 @@ _CheckItem::
 	dw .Item
 	dw .Medicine
 	dw .Ball
-	dw DoNothing
 	dw .Berry
+	dw DoNothing
 	dw DoNothing
 
 .Medicine:
@@ -444,8 +444,8 @@ _CountItem::
 	dw .Item
 	dw .Medicine
 	dw .Ball
-	dw DoNothing
 	dw .Berry
+	dw DoNothing
 	dw DoNothing
 
 .Item:
