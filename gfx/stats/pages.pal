@@ -1,23 +1,23 @@
 if !DEF(MONOCHROME)
-; pink
+; red
 	RGB 31, 31, 31
-	RGB 31, 19, 31
-	RGB 31, 15, 31
+	RGB 31, 23, 23
+	RGB 31, 15, 15
 	RGB 00, 00, 00
 ; green
 	RGB 31, 31, 31
-	RGB 21, 31, 14
-	RGB 17, 31, 00
+	RGB 23, 31, 23
+	RGB 15, 31, 15
 	RGB 00, 00, 00
 ; blue
 	RGB 31, 31, 31
-	RGB 17, 31, 31
-	RGB 17, 31, 31
+	RGB 23, 23, 31
+	RGB 15, 15, 31
 	RGB 00, 00, 00
-; orange
+; yellow
 	RGB 31, 31, 31
-	RGB 30, 24, 16
-	RGB 30, 22, 12
+	RGB 31, 31, 15
+	RGB 31, 31, 07
 	RGB 00, 00, 00
 else
 	MONOCHROME_RGB_FOUR
