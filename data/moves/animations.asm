@@ -4646,7 +4646,7 @@ BattleAnim_FlareBlitz:
 	anim_wait 2
 	anim_sound 0, 0, SFX_BURN
 	anim_wait 32
-	anim_jump BattleAnim_ShowMon_0
+	anim_jump BattleAnimSub_ShowMon_0
 
 BattleAnim_Magnitude:
 	anim_1gfx ANIM_GFX_ROCKS
