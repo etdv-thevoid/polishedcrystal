@@ -52,7 +52,7 @@ VioletPokeCenter1FElmsAideScript:
 .AskTakeEgg:
 	yesorno
 	iffalsefwd .RefusedEgg
-	giveegg TOGEPI
+	giveegg TOGEPI, PLAIN_FORM, EXTRASENSORY
 	iffalse_jumpopenedtext .PartyAndBoxFull
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB
