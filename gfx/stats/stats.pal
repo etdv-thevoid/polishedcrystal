@@ -1,12 +1,12 @@
 if !DEF(MONOCHROME)
-; pink
-	RGB 31, 19, 31
+; red
+	RGB 31, 23, 23
 ; green
-	RGB 21, 31, 14
+	RGB 23, 31, 23
 ; blue
-	RGB 17, 31, 31
-; orange
-	RGB 30, 24, 16
+	RGB 23, 23, 31
+; yellow
+	RGB 31, 31, 15
 else
 	RGB_MONOCHROME_WHITE
 	RGB_MONOCHROME_WHITE
