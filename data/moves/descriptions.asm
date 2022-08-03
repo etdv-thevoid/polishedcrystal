@@ -302,8 +302,13 @@ DrainPunchDescription:
 	done
 
 DoubleSlapDescription:
+if DEF(FAITHFUL)
 	text "Repeatedly slaps"
 	next "2-5 times."
+else
+	text "A double slapping"
+	next "attack."
+endc
 	done
 
 FuryStrikesDescription:
