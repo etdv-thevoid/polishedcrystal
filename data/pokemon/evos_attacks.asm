@@ -6009,13 +6009,17 @@ MagmortarEvosAttacks:
 
 TogekissEvosAttacks:
 	db -1 ; no more evolutions
-	db 1, DISARM_VOICE ; evolution move
-	db 1, HURRICANE ; Sky Attack → new move
-	db 1, EXTREMESPEED
-	db 1, AURA_SPHERE
-	db 1, AIR_SLASH
-	db 1, PLAY_ROUGH ; Sw/Sh move
+	db 1, DISARM_VOICE ; Fairy Wind → new move
 	db 1, FUTURE_SIGHT ; Sw/Sh move
+	db 1, HURRICANE ; Sky Attack → new move
+	db 1, AURA_SPHERE
+	db 1, EXTREMESPEED
+	db 1, TRI_ATTACK
+	db 1, CHARM
+	db 1, ANCIENTPOWER
+	db 1, EXTRASENSORY ; egg move
+	db 1, PLAY_ROUGH ; Sw/Sh move
+	db 1, AIR_SLASH ; evolution move
 	db -1 ; no more level-up moves
 
 YanmegaEvosAttacks:
