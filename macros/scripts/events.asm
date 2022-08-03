@@ -358,6 +358,11 @@ MACRO giveegg
 	else
 		dp \1, PLAIN_FORM | IS_EGG_MASK
 	endc
+	if _NARG >= 3
+		db \3 ; special move
+	else
+		db NO_MOVE
+	endc
 ENDM
 
 	const givepokemail_command
