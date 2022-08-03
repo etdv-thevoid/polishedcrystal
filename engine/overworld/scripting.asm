@@ -2112,9 +2112,10 @@ Script_giveegg:
 	ld [wCurPartySpecies], a
 	call GetScriptByte
 	ld [wCurForm], a
+	call GetScriptByte
+	ld [wCurPlayerMove], a
 	xor a
 	ld [wCurItem], a
-	ld [wCurPlayerMove], a
 	ld b, a
 	inc a
 	assert EGG_LEVEL == 1
