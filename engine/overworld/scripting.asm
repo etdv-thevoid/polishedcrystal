@@ -2558,7 +2558,7 @@ Script_checkunits:
 Script_unowntypeface:
 	ld a, [wOptions2]
 	ld [wOptionsBuffer], a
-	and $ff - FONT_MASK
+	and ~FONT_MASK
 	or UNOWN_FONT
 	ld [wOptions2], a
 	jmp LoadStandardFont
