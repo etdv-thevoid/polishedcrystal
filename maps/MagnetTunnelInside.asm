@@ -7,10 +7,6 @@ MagnetTunnelInside_MapScriptHeader:
 	def_warp_events
 	warp_event  5, 19, MAGNET_TUNNEL_WEST, 1
 	warp_event 43,  3, MAGNET_TUNNEL_EAST, 1
-	warp_event 27,  3, MAGNET_TUNNEL_INSIDE, 4
-	warp_event 27, 31, MAGNET_TUNNEL_INSIDE, 3
-	warp_event 34,  5, MAGNET_TUNNEL_INSIDE, 6
-	warp_event 34, 33, MAGNET_TUNNEL_INSIDE, 5
 
 	def_coord_events
 
@@ -21,22 +17,14 @@ MagnetTunnelInside_MapScriptHeader:
 	bg_event 23, 21, BGEVENT_UP, MagnetTunnelInsideMachine2
 	bg_event 20,  8, BGEVENT_UP, MagnetTunnelInsideMachine3
 	bg_event 21,  8, BGEVENT_UP, MagnetTunnelInsideMachine3
-	bg_event 34,  8, BGEVENT_UP, MagnetTunnelInsideMachine4
-	bg_event 35,  8, BGEVENT_UP, MagnetTunnelInsideMachine4
-	bg_event 38, 30, BGEVENT_ITEM + METAL_POWDER, EVENT_MAGNET_TUNNEL_HIDDEN_METAL_POWDER
+	bg_event 34,  9, BGEVENT_UP, MagnetTunnelInsideMachine4
+	bg_event 35,  9, BGEVENT_UP, MagnetTunnelInsideMachine4
 
 	def_object_events
 	object_event  3, 10, SPRITE_N64, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_COMMAND, jumptext, MagnetTunnelInsideLodestoneText, EVENT_MAGNET_TUNNEL_LODESTONE_1
 	object_event 20, 23, SPRITE_N64, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_COMMAND, jumptext, MagnetTunnelInsideLodestoneText, EVENT_MAGNET_TUNNEL_LODESTONE_2
 	object_event 20,  5, SPRITE_N64, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_COMMAND, jumptext, MagnetTunnelInsideLodestoneText, EVENT_MAGNET_TUNNEL_LODESTONE_3
-	object_event 35,  5, SPRITE_N64, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_COMMAND, jumptext, MagnetTunnelInsideLodestoneText, EVENT_MAGNET_TUNNEL_LODESTONE_4
-	object_event 11, 20, SPRITE_ENGINEER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, MagnetTunnelInsideEngineerText1, -1
-	object_event  8, 13, SPRITE_ENGINEER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, MagnetTunnelInsideEngineerText2, -1
-	object_event 32, 21, SPRITE_ENGINEER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, MagnetTunnelInsideEngineerText3, -1
-	object_event 22,  8, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerEngineerGraden, -1
-	object_event 31, 12, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerEngineerGustav, -1
-	object_event 24, 23, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerEngineerNicolas, -1
-	tmhmball_event 19, 21, TM_GYRO_BALL, EVENT_MAGNET_TUNNEL_TM_GYRO_BALL
+	object_event 31,  8, SPRITE_N64, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_COMMAND, jumptext, MagnetTunnelInsideLodestoneText, EVENT_MAGNET_TUNNEL_LODESTONE_4
 
 	object_const_def
 	const MAGNETTUNNELINSIDE_STONE_1
@@ -66,8 +54,7 @@ MagnetTunnelInsideTileCallback:
 .NoPit
 	checkevent EVENT_MAGNET_TUNNEL_LODESTONE_4
 	iffalsefwd .NoMachine4
-	changeblock 34, 8, $6b
-	changeblock 34, 6, $35
+	changeblock 34, 8, $66
 .NoMachine4
 	endcallback
 
@@ -177,7 +164,7 @@ MagnetTunnelInsideMachine4:
 	yesorno
 	iffalse_endtext
 	playsound SFX_GLASS_TING
-	changeblock 34, 8, $6b
+	changeblock 34, 8, $67
 	reloadmappart
 	writetext MagnetTunnelInsideMachineText2
 	waitbutton
@@ -188,42 +175,34 @@ MagnetTunnelInsideMachine4:
 	playsound SFX_THUNDERSHOCK
 	earthquake 15
 	playsound SFX_STRENGTH
-	changeblock 34, 6, $35
+	changeblock 34, 8, $66
 	reloadmappart
 	disappear MAGNETTUNNELINSIDE_STONE_4
-	scall MagnetTunnelAlarmSounds
-	showemote EMOTE_QUESTION, PLAYER, 15
-	opentext
-	writetext MagnetTunnelInsideMachineText4
-	waitbutton
-	closetext
 	end
 
 .StoneMovement1:
 	fix_facing
-	slow_slide_step_down
-	slow_slide_step_down
-	slow_slide_step_left
+	slow_slide_step_right
+	slow_slide_step_right
+	slow_slide_step_right
 	remove_fixed_facing
 	step_end
 
 .MachineOn:
 	checkevent EVENT_MAGNET_TUNNEL_LODESTONE_IN_PIT
-	iftrue_jumptext MagnetTunnelInsideMachineText7
-	scall MagnetTunnelAlarmSounds
+	iftrue_jumptext MagnetTunnelInsideMachineText0
 	opentext
-	writetext MagnetTunnelInsideMachineText5
+	writetext MagnetTunnelInsideMachineText4
 	yesorno
 	iffalse_endtext
 	playsound SFX_GLASS_TING
-	writetext MagnetTunnelInsideMachineText6
+	changeblock 34, 8, $65
+	reloadmappart
+	moveobject MAGNETTUNNELINSIDE_STONE_4, 34, 8
+	appear MAGNETTUNNELINSIDE_STONE_4
+	writetext MagnetTunnelInsideMachineText5
 	waitbutton
 	closetext
-	changeblock 34, 8, $6a
-	changeblock 34, 6, $34
-	reloadmappart
-	moveobject MAGNETTUNNELINSIDE_STONE_4, 34, 7
-	appear MAGNETTUNNELINSIDE_STONE_4
 	playsound SFX_EMBER
 	earthquake 15
 	applymovement MAGNETTUNNELINSIDE_STONE_4, .StoneMovement2
@@ -239,37 +218,25 @@ MagnetTunnelInsideMachine4:
 	fix_facing
 	slide_step_up
 	slide_step_up
+	slide_step_up
 	remove_fixed_facing
 	step_end
 
-MagnetTunnelAlarmSounds:
-	waitsfx
-	special SaveMusic
-	playmusic MUSIC_NONE
-	pause 10
-	playsound SFX_LICK
-	pause 10
-	playsound SFX_LICK
-	pause 10
-	playsound SFX_LICK
-	pause 10
-	playsound SFX_LICK
-	pause 10
-	playsound SFX_LICK
-	waitsfx
-	special RestoreMusic
-	end
+MagnetTunnelInsideMachineText0:
+	text "The machine is"
+	line "off."
+	done
 
 MagnetTunnelInsideMachineText1:
 	text "The machine is"
-	line "powered off."
+	line "off."
 
 	para "Turn it on?"
 	done
 
 MagnetTunnelInsideMachineText2:
 	text "Ping! The machine"
-	line "powered on."
+	line "turned on."
 	done
 
 MagnetTunnelInsideMachineText3:
@@ -278,42 +245,15 @@ MagnetTunnelInsideMachineText3:
 	done
 
 MagnetTunnelInsideMachineText4:
-	text "Huh?!"
+	text "The machine is"
+	line "running smoothly."
+
+	para "Turn it off?"
 	done
 
 MagnetTunnelInsideMachineText5:
-	text "This machine isn't"
-	line "running properly!"
-
-	para "Multiple WARNING"
-	line "messages rapidly"
-	
-	para "flash across the"
-	line "small screen and"
-
-	para "the smell of some-"
-	line "thing burning"
-	cont "fills the air."
-
-	para "Hit the emergency"
-	line "shutdown button?"
-	done
-
-MagnetTunnelInsideMachineText6:
-	text "Ding! The machine"
-	line "powered off."
-	done
-
-MagnetTunnelInsideMachineText7:
-	text "The machine is"
-	line "surrounded by the"
-	
-	para "faint stench of"
-	line "melted plastic…"
-
-	para "Better be safe and"
-	line "not try to turn it"
-	cont "back on."
+	text "Ping! The machine"
+	line "turned off."
 	done
 
 MagnetTunnelInsideLodestoneText:
@@ -322,178 +262,4 @@ MagnetTunnelInsideLodestoneText:
 
 	para "It has a faint"
 	line "aura of static."
-	done
-
-MagnetTunnelInsideEngineerText1:
-	text "The lodestone here"
-	line "gives off a strong"
-	cont "magnetic field."
-
-	para "We had to bring in"
-	line "specialized equip-"
-
-	para "ment to complete"
-	line "this tunnel by the"
-	cont "foreman's deadline."
-
-	para "Our team was under"
-	line "heavy pressure to"
-	cont "deliver on time."
-	done
-
-MagnetTunnelInsideEngineerText2:
-	text "Ever since we"
-	line "began construction"
-
-	para "on this tunnel,"
-	line "the number of wild"
-
-	para "Electric-type"
-	line "#mon here has"
-	cont "more than doubled!"
-
-	para "We thought this"
-	line "tunnel was for the"
-	
-	para "Magnet Train, but"
-	line "its more like a"
-	
-	para "home for magnet"
-	line "#mon! Hahaha!"
-	done
-	
-MagnetTunnelInsideEngineerText3:
-	text "Everyday, more and"
-	line "more Electric-type"
-
-	para "#mon show up"
-	line "and cause issues."
-	
-	para "Especially the"
-	line "Magnemite!"
-	
-	para "The foreman thinks"
-	line "they must be drawn"
-
-	para "to the lodestone's"
-	line "unique magnetic"
-	cont "properties."
-
-	para "I wonder why?"
-	done
-
-GenericTrainerEngineerGraden:
-	generictrainer ENGINEER, GRADEN, EVENT_BEAT_ENGINEER_GRADEN, .SeenText, .BeatenText
-
-	text "Hey kid! Welcome"
-	line "to Magent Tunnel."
-	
-	para "I'm the foreman"
-	line "on this jobsite."
-
-	para "We dug out this"
-	line "tunnel to make a"
-	
-	para "path for the new"
-	line "Magnet Train"
-	cont "railway. But…"
-
-	para "Haha! Little did I"
-	line "know, all of the"
-
-	para "lodestone would"
-	line "cause us so much"
-	cont "headache!"
-
-	done
-
-.SeenText:
-	text "Admiring all of"
-	line "our handiwork?"
-
-	para "Haha!"
-	line "Admire this!"
-	done
-
-.BeatenText:
-	text "Haha! You've got"
-	line "guts kid."
-	done
-
-GenericTrainerEngineerGustav:
-	generictrainer ENGINEER, GUSTAV, EVENT_BEAT_ENGINEER_GUSTAV, .SeenText, .BeatenText
-
-	text "This machine has"
-	line "been acting really"
-	cont "strange lately."
-
-	para "I've tried to fix"
-	line "it, but its been"
-	cont "no use…"
-
-	para "I can't seem to"
-	line "figure out what's"
-	cont "going on!"
-
-	para "I'm worried if I"
-	line "turn it on again,"
-
-	para "it will short"
-	line "circuit and be"
-	cont "kaput…"
-
-	; para "Don't tell the"
-	; line "foreman, okay?"
-
-	; para "And don't mess with"
-	; line "it either! Deal?"
-	done
-
-.SeenText:
-	text "Stand back!"
-
-	para "This machine has"
-	line "been on the fritz!"
-	done
-
-.BeatenText:
-	text "Blown out! Just"
-	line "like a fuse…"
-	done
-
-GenericTrainerEngineerNicolas:
-	generictrainer ENGINEER, NICOLAS, EVENT_BEAT_ENGINEER_NICOLAS, .SeenText, .BeatenText
-
-	text "These things can"
-	line "generate some"
-	cont "serious power!"
-
-	para "When turned on,"
-	line "they generate an"
-
-	para "extremely powerful"
-	line "magnetic field."
-
-	; para "That sure comes in"
-	; line "handy when trying"
-
-	; para "to move large"
-	; line "magnetic rocks"
-	; cont "like lodestone."
-
-	para "But they can be"
-	line "really dangerous…"
-
-	para "So be careful in"
-	line "here, alright kid?"
-	done
-
-.SeenText:
-	text "Hey! Be careful"
-	line "around the"
-	cont "machinery kid!"
-	done
-
-.BeatenText:
-	text "Shutdown!"
 	done
