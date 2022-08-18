@@ -1242,7 +1242,7 @@ Script_startbattle:
 	call BufferScreen
 	predef StartBattle
 	ld a, [wBattleResult]
-	and $3f
+	and ~BATTLERESULT_BITMASK
 	ldh [hScriptVar], a
 	ret
 
@@ -1265,8 +1265,8 @@ Script_reloadmapafterbattle:
 	ld hl, wWildBattlePanic
 	ld [hl], d
 	ld a, [wBattleResult]
-	and $3f
-	cp $1
+	and ~BATTLERESULT_BITMASK
+	cp LOSE
 	jr nz, .notblackedout
 	ld b, BANK(Script_BattleWhiteout)
 	ld hl, Script_BattleWhiteout
@@ -1286,7 +1286,7 @@ Script_reloadmapafterbattle:
 	farcall RunPostBattleAbilities
 .skip_pickup
 	ld a, [wBattleResult]
-	bit 7, a
+	bit BATTLERESULT_BOX_FULL_F, a
 	jr z, .done
 	ld b, BANK(Script_SpecialBillCall)
 	ld de, Script_SpecialBillCall
@@ -1482,12 +1482,8 @@ StdScript:
 	ld hl, StdScripts
 	add hl, de
 	add hl, de
-	add hl, de
-	ld a, BANK(StdScripts)
-	call GetFarByte
-	ld b, a
-	inc hl
-	ld a, BANK(StdScripts)
+	ld b, BANK(StdScripts)
+	ld a, b
 	jmp GetFarWord
 
 ScriptJump:

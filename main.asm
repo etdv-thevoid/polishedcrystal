@@ -160,7 +160,6 @@ INCLUDE "data/trainers/class_names.asm"
 INCLUDE "engine/battle/ai/redundant.asm"
 INCLUDE "engine/events/move_deleter.asm"
 INCLUDE "engine/items/tmhm2.asm"
-INCLUDE "engine/items/key_items.asm"
 INCLUDE "data/moves/descriptions.asm"
 INCLUDE "engine/events/pokerus/pokerus.asm"
 INCLUDE "engine/battle/start_battle.asm"
@@ -313,7 +312,6 @@ INCLUDE "engine/battle/abilities.asm"
 
 SECTION "bank21", ROMX
 
-INCLUDE "gfx/battle_anims.asm"
 INCLUDE "engine/events/halloffame.asm"
 INCLUDE "engine/gfx/copy_tilemap_at_once.asm"
 INCLUDE "engine/pokemon/abilities.asm"
@@ -336,12 +334,10 @@ INCLUDE "engine/tilesets/timeofday_pals.asm"
 INCLUDE "engine/battle/battle_transition.asm"
 INCLUDE "engine/events/field_moves.asm"
 INCLUDE "engine/events/magnet_train.asm"
-; The 2 below files assume they're within the same bank.
+; The three files below assume they're within the same bank.
 INCLUDE "engine/gfx/sprites.asm"
 INCLUDE "engine/gfx/mon_icons.asm"
-INCLUDE "data/pokemon/menu_icon_pointers.asm"
-INCLUDE "data/pokemon/mini_pointers.asm"
-INCLUDE "data/pokemon/mask_pointers.asm"
+INCLUDE "data/pokemon/mini_icon_pointers.asm"
 
 
 SECTION "bank24", ROMX
@@ -487,7 +483,6 @@ INCLUDE "engine/events/wonder_trade.asm"
 SECTION "bank41", ROMX
 
 INCLUDE "engine/gfx/dma_transfer.asm"
-INCLUDE "gfx/emotes.asm"
 INCLUDE "engine/overworld/warp_connection.asm"
 INCLUDE "engine/battle/used_move_text.asm"
 
@@ -577,6 +572,11 @@ SECTION "Crystal Events", ROMX
 
 INCLUDE "engine/events/battle_tower/load_trainer.asm"
 INCLUDE "engine/events/odd_egg.asm"
+
+
+SECTION "Painting Pic Pointers", ROMX
+
+INCLUDE "data/events/paintings/pic_pointers.asm"
 
 
 SECTION "Type Chart", ROMX

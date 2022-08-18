@@ -85,18 +85,17 @@ CeladonHomeDecorStore3FClerk1Script:
 	sjump .Start
 
 .MenuData:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 2, 19, 11
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
 	db $80 ; flags
 	db 4 ; items
-	db "Red C.    ¥45000@"
-	db "Yellow C. ¥45000@"
-	db "Green C.  ¥45000@"
+	db "Red       ¥45000@"
+	db "Yellow    ¥45000@"
+	db "Green     ¥45000@"
 	db "Cancel@"
 
 CeladonHomeDecorStore3FClerk2Script:

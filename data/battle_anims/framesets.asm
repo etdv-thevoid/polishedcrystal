@@ -188,7 +188,7 @@ BattleAnimFrameData:
 	dw .Frameset_b9 ; b9
 	dw .Frameset_StoneEdge ; ba
 	dw .Frameset_BrickBreak ; bb
-	dw .Frameset_EchoedVoice ; bc
+	dw .Frameset_HyperVoice ; bc
 	dw .Frameset_BugBuzzL ; bd
 	dw .Frameset_BugBuzzR ; be
 	dw .Frameset_BulletPunch ; bf
@@ -196,6 +196,7 @@ BattleAnimFrameData:
 	dw .Frameset_FlashCannon ; c1
 	dw .Frameset_FocusBlast ; c1
 	dw .Frameset_Vortex ; c2
+	dw .Frameset_RedStar ; c3
 	assert_table_length NUM_BATTLEANIMFRAMESETS
 
 ; OAM index (see battle/objects/oam.asm), flip flags / duration
@@ -1292,13 +1293,13 @@ BattleAnimFrameData:
 	frame BATTLEANIMOAMSET_BRICK_BREAK, 8
 	endanim
 
-.Frameset_EchoedVoice:
+.Frameset_HyperVoice:
 	frame BATTLEANIMOAMSET_18,  0
 	frame BATTLEANIMOAMSET_70,  0
 	frame BATTLEANIMOAMSET_71,  0
 	frame BATTLEANIMOAMSET_72,  0
 	frame BATTLEANIMOAMSET_73,  0
-	frame BATTLEANIMOAMSET_ECHOED_VOICE,  0
+	frame BATTLEANIMOAMSET_HYPER_VOICE,  0
 	delanim
 
 .Frameset_BugBuzzL:
@@ -1345,3 +1346,7 @@ BattleAnimFrameData:
 	frame BATTLEANIMOAMSET_VORTEX2,  2
 	frame BATTLEANIMOAMSET_VORTEX3,  2
 	dorestart
+
+.Frameset_RedStar:
+	frame BATTLEANIMOAMSET_14, 30
+	delanim
