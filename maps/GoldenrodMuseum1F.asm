@@ -44,13 +44,13 @@ GoldenrodMuseum1FRocketScoutScript:
 	writetext GoldenrodMuseum1FRocketScoutText2
 	waitbutton
 	closetext
-	turnobject LAST_TALKED, UP
+	turnobject LAST_TALKED, LEFT
 	end
 
 GoldenrodMuseumReceptionistText:
 	text "Welcome to the"
 	line "Goldenrod City"
-	cont "Museum!"
+	cont "Museum."
 
 	para "In celebration of"
 	line "our grand opening,"
@@ -59,9 +59,9 @@ GoldenrodMuseumReceptionistText:
 	line "of charge."
 
 	para "Please, feel free"
-	line "to look around."
+	line "to look around,"
 
-	para "And we hope you"
+	para "and we hope you"
 	line "enjoy your visit."
 	done
 
@@ -69,11 +69,11 @@ GoldenrodMuseumOfficerText:
 	text "I'm keeping my eye"
 	line "on you kid!"
 
-	para "Hahaha! Just"
+	para "Hahaha! I'm just"
 	line "messing with ya!"
 
 	para "I'm keeping an eye"
-	line "on everyone."
+	line "on everyone…"
 	done
 
 GoldenrodMuseum1FLodestoneSignpostText:
@@ -91,15 +91,27 @@ GoldenrodMuseum1FDrillText:
 	done
 
 GoldenrodMuseum1FHikerText:
-	text "TODO"
+	text "I heard they had"
+	line "to use equipment"
+
+	para "like this drill"
+	line "to excavate the"
+
+	para "tunnel for the"
+	line "Magnet Train."
 	done
 
 GoldenrodMuseum1FRadioDishText:
-	text "TODO"
+	text "A metallic dish"
+	line "used for trans-"
+
+	para "mitting radio"
+	line "waves."
 	done
 
 GoldenrodMuseum1FHarborText:
-	text "TODO"
+	text "An aquarium filled"
+	line "with Magikarp!"
 	done
 
 GoldenrodMuseum1FBigPearlText:
@@ -125,18 +137,3 @@ GoldenrodMuseum1FRocketScoutText2:
 	line "rude to stare?"
 	cont "Beat it kid!"
 	done
-
-GoldenrodMuseum1FInfoSignScript:
-	jumpthistext
-
-	text "Goldenrod City, in"
-	line "partnership with"
-
-	para "Saffron City in"
-	line "Kanto, celebrates"
-
-	para "the completion of"
-	line "the Magnet Train"
-	cont "fast rail."
-	done
-
