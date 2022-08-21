@@ -132,7 +132,7 @@ endc
 if DEF(FAITHFUL)
 	move SOLAR_BEAM,   EFFECT_SOLAR_BEAM,        120, GRASS,     100, 10,   0, SPECIAL
 else
-	move SOLAR_BEAM,   EFFECT_SOLAR_BEAM,        200, GRASS,     100, 10,   0, SPECIAL
+	move SOLAR_BEAM,   EFFECT_SOLAR_BEAM,        140, GRASS,     100, 10,   0, SPECIAL
 endc
 	move POISONPOWDER, EFFECT_POISON,              0, POISON,     75, 35,   0, STATUS
 	move STUN_SPORE,   EFFECT_PARALYZE,            0, GRASS,      75, 30,   0, STATUS
