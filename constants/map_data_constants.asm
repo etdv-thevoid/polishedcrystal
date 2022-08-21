@@ -5,14 +5,24 @@ DEF MAP_NONE   EQU 0
 
 ; map struct members (see data/maps/maps.asm)
 rsreset
-DEF MAP_MAPATTRIBUTES_BANK rb ; 0
-DEF MAP_TILESET            rb ; 1
-DEF MAP_ENVIRONMENT        rb ; 2
-DEF MAP_MAPATTRIBUTES      rw ; 3
-DEF MAP_LOCATION           rb ; 5
-DEF MAP_MUSIC              rb ; 6
-DEF MAP_PALETTE            rb ; 7
-DEF MAP_LENGTH EQU _RS        ; 8
+DEF MAP_TILESET       rb ; 0
+DEF MAP_ENVIRONMENT   rb ; 1
+DEF MAP_MAPATTRIBUTES rw ; 2
+DEF MAP_LOCATION      rb ; 4
+DEF MAP_MUSIC         rb ; 5
+DEF MAP_PALETTE       rb ; 6
+DEF MAP_LENGTH EQU _RS   ; 7
+
+; map landmark name signs
+	const_def
+	const SIGN_WOOD
+	const SIGN_CITY
+	const SIGN_FOREST
+	const SIGN_CAVE
+	const SIGN_ROUTE
+	const SIGN_WATER
+	const SIGN_BUILDING
+DEF NUM_SIGNS EQU const_value
 
 ; map environments (wEnvironment)
 ; EnvironmentColorsPointers indexes (see data/maps/environment_colors.asm)

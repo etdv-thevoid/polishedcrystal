@@ -3,12 +3,8 @@ MACRO map_attributes
 	DEF CURRENT_MAP_WIDTH = \2_WIDTH
 	DEF CURRENT_MAP_HEIGHT = \2_HEIGHT
 \1_MapAttributes::
-	db \3
-	db \2_HEIGHT, \2_WIDTH
-	db BANK(\1_BlockData)
-	dw \1_BlockData
-	db BANK(\1_MapScriptHeader)
-	dw \1_MapScriptHeader
+	db \3, \2_HEIGHT, \2_WIDTH
+	dba \1_BlockData, \1_MapScriptHeader
 	db \4
 ENDM
 
@@ -554,7 +550,7 @@ ENDM
 	map_attributes ValeriesHouse, VALERIES_HOUSE, $0, 0
 	map_attributes EcruteakCherishBallHouse, ECRUTEAK_CHERISH_BALL_HOUSE, $0, 0
 	map_attributes EcruteakDestinyKnotHouse, ECRUTEAK_DESTINY_KNOT_HOUSE, $0, 0
-	map_attributes EcruteakShrineOutside, ECRUTEAK_SHRINE_OUTSIDE, $5, 0
+	map_attributes EcruteakShrineOutside, ECRUTEAK_SHRINE_OUTSIDE, $0, 0
 	map_attributes EcruteakShrineInside, ECRUTEAK_SHRINE_INSIDE, $0, 0
 	map_attributes BlackthornGym1F, BLACKTHORN_GYM_1F, $0, 0
 	map_attributes BlackthornGym2F, BLACKTHORN_GYM_2F, $0, 0

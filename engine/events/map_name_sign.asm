@@ -126,7 +126,7 @@ InitMapNameSign::
 	ret z
 	cp POWER_PLANT
 	ret z
-	cp POKEMON_MANSION
+	cp SOUL_HOUSE
 	ret z
 	cp CINNABAR_LAB
 	ret z
@@ -206,9 +206,14 @@ LoadMapNameSignGFX:
 	ld hl, vTiles0 tile POPUP_MAP_FRAME_SPACE
 	call GetOpaque1bppSpaceTile
 	; load sign frame
+	ld hl, Signs
+	ld bc, POPUP_MAP_FRAME_SIZE tiles
+	ld a, [wSign]
+	rst AddNTimes
+	ld d, h
+	ld e, l
 	ld hl, vTiles0 tile POPUP_MAP_FRAME_START
-	ld de, MapEntryFrameGFX
-	lb bc, BANK(MapEntryFrameGFX), POPUP_MAP_FRAME_SIZE
+	lb bc, BANK(Signs), POPUP_MAP_FRAME_SIZE
 	call Get2bpp
 	; clear landmark name area
 	ld hl, vTiles0 tile POPUP_MAP_NAME_START
@@ -315,14 +320,14 @@ InitMapNameFrame:
 	or X_FLIP
 	ld [hli], a
 	; middle row
-	and $ff - X_FLIP
+	and ~X_FLIP
 	ld [hli], a
 	ld bc, SCREEN_WIDTH - 2
 	rst ByteFill
 	or X_FLIP
 	ld [hli], a
 	; bottom row
-	and $ff - X_FLIP
+	and ~X_FLIP
 	ld bc, SCREEN_WIDTH - 1
 	rst ByteFill
 	or X_FLIP

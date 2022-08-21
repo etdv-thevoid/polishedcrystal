@@ -80,11 +80,10 @@ data/text/common.o \
 data/tilesets.o \
 engine/movie/credits.o \
 engine/overworld/events.o \
-gfx/pics.o \
-gfx/icons.o \
-gfx/minis.o \
-gfx/mini_masks.o \
+gfx/minis_icons.o \
+gfx/pokemon.o \
 gfx/sprites.o \
+gfx/trainers.o \
 gfx/items.o \
 gfx/misc.o
 

@@ -451,21 +451,67 @@ ApplyPartyMenuHPPals:
 	ld a, e
 	jmp FillBoxWithByte
 
-SetPartyMenuPal:
-; Writes mon icon color a to palette in de
-	ld hl, PartyMenuOBPals
-	ld bc, 1 palettes
-	push bc
-	rst AddNTimes
-	pop bc
-	ld bc, 1 palettes
-	jmp FarCopyColorWRAM
-
 InitPartyMenuOBPals:
 	ld hl, PartyMenuOBPals
 	ld de, wOBPals1
 	ld bc, 8 palettes
-	jmp FarCopyColorWRAM
+	call FarCopyColorWRAM
+
+	ld a, [wPartyCount]
+	ld hl, wPartyMon1Species
+	ld de, wOBPals1 palette 2 + 2
+.loop
+	push af
+	push hl
+	push de
+	; a = species
+	ld a, [hl]
+	; bc = personality
+	push hl
+	ld bc, MON_PERSONALITY - MON_SPECIES
+	add hl, bc
+	ld b, h
+	ld c, l
+	; a = EGG if is egg
+	inc hl
+	bit MON_IS_EGG_F, [hl]
+	jr z, .not_egg
+	ld a, EGG
+.not_egg
+	; hl = palette
+	call GetMonNormalOrShinyPalettePointer
+	; load palette
+	ld bc, 4
+	call FarCopyColorWRAM
+	; c = species
+	pop hl
+	ld c, [hl]
+	; b = form
+	ld de, MON_FORM - MON_SPECIES
+	add hl, de
+	ld b, [hl]
+	; hl = DVs
+	ld de, MON_DVS - MON_FORM
+	add hl, de
+	; vary colors by DVs
+	call CopyDVsToColorVaryDVs ; trashes hl but not bc
+	pop de
+	ld h, d
+	ld l, e
+	call VaryColorsByDVs
+	; skip this black and next white to next colors
+rept 4
+	inc hl
+endr
+	ld d, h
+	ld e, l
+	pop hl
+	ld bc, PARTYMON_STRUCT_LENGTH
+	add hl, bc
+	pop af
+	dec a
+	jr nz, .loop
+	ret
 
 InitPokegearPalettes:
 ; This is needed because the regular palette is dark at night.
@@ -613,12 +659,12 @@ LoadPokemonPalette:
 
 	; hl = palette
 	call GetMonPalettePointer
-	; load palette in BG 7
-	ld de, wBGPals1 palette 7 + 2
+	; load palette into de (set by caller)
 	ld bc, 4
 	jmp FarCopyColorWRAM
 
 LoadPartyMonPalette:
+	push de
 	; bc = personality
 	ld hl, wPartyMon1Personality
 	ld a, [wCurPartyMon]
@@ -629,8 +675,7 @@ LoadPartyMonPalette:
 	ld a, [wCurPartySpecies]
 	; hl = palette
 	call GetMonNormalOrShinyPalettePointer
-	; load palette in BG 7
-	ld de, wBGPals1 palette PAL_BG_TEXT + 2
+	; load palette in de (set by caller)
 	ld bc, 4
 	call FarCopyColorWRAM
 	; hl = DVs
@@ -644,7 +689,7 @@ LoadPartyMonPalette:
 	ld b, a
 	; vary colors by DVs
 	call CopyDVsToColorVaryDVs
-	ld hl, wBGPals1 palette PAL_BG_TEXT + 2
+	pop hl
 	jmp VaryColorsByDVs
 
 LoadTrainerPalette:
@@ -756,6 +801,7 @@ LoadMapPals:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	; Further refine by time of day
 	ld a, [wTimeOfDayPal]
 	and 3
@@ -767,13 +813,15 @@ LoadMapPals:
 	add hl, de
 	ld e, l
 	ld d, h
+
 	; Switch to palettes WRAM bank
 	ldh a, [rSVBK]
 	push af
 	ld a, $5
 	ldh [rSVBK], a
+
 	ld hl, wBGPals1
-	ld b, 8
+	ld b, 7
 .outer_loop
 	ld a, [de] ; lookup index for TilesetBGPalette
 	push de
@@ -799,10 +847,20 @@ LoadMapPals:
 	inc de
 	dec b
 	jr nz, .outer_loop
+
 	pop af
 	ldh [rSVBK], a
 
 .got_pals
+	; copy sign palette for PAL_BG_TEXT
+	ld hl, SignPals
+	ld bc, 1 palettes
+	ld a, [wSign]
+	rst AddNTimes ; preserves bc
+	ld de, wBGPals1 palette PAL_BG_TEXT
+	call FarCopyColorWRAM
+
+	; copy OB palettes
 	ld a, [wTimeOfDayPal]
 	and 3
 	ld bc, 8 palettes
@@ -856,13 +914,14 @@ LoadMapPals:
 .nite
 	add hl, de
 .morn_day
-	ld de, wBGPals1 palette 6 + 2
+	ld de, wBGPals1 palette PAL_BG_ROOF + 2
 	ld bc, 4
 	jmp FarCopyColorWRAM
 
 INCLUDE "data/maps/environment_colors.asm"
 
 TilesetBGPalette::
+	table_width 1 palettes, TilesetBGPalette
 if DEF(HGSS)
 INCLUDE "gfx/tilesets/palettes/hgss/bg.pal"
 elif DEF(MONOCHROME)
@@ -870,8 +929,15 @@ INCLUDE "gfx/tilesets/palettes/monochrome/bg.pal"
 else
 INCLUDE "gfx/tilesets/bg_tiles.pal"
 endc
+	assert_table_length 8 * 5 + 4 ; morn, day, nite, eve, indoor, water
+
+SignPals:
+	table_width 1 palettes, SignPals
+INCLUDE "gfx/signs/signs.pal"
+	assert_table_length NUM_SIGNS
 
 MapObjectPals:
+	table_width 1 palettes, MapObjectPals
 if DEF(HGSS)
 INCLUDE "gfx/tilesets/palettes/hgss/ob.pal"
 elif DEF(MONOCHROME)
@@ -879,6 +945,7 @@ INCLUDE "gfx/tilesets/palettes/monochrome/ob.pal"
 else
 INCLUDE "gfx/overworld/npc_sprites.pal"
 endc
+	assert_table_length 8 * 4 ; morn, day, nite, eve
 
 RoofPals:
 	table_width PAL_COLOR_SIZE * 2 * 3, RoofPals

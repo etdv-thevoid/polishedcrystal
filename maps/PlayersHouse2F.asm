@@ -241,9 +241,10 @@ endr
 	loadmem wPartyMon2PP+2, 10
 	loadmem wPartyMon2PP+3, 10
 	; variant form test
-	givepoke GRAVELER, ALOLAN_FORM, 50
-	loadmem wPartyMon3Shiny, SHINY_MASK
 	givepoke WEEZING, GALARIAN_FORM, 50
+	loadmem wPartyMon3Shiny, SHINY_MASK
+	; ext species test
+	givepoke KLEAVOR, 50
 	givepoke DITTO, 50
 	loadmem wPartyMon5Personality, HIDDEN_ABILITY | QUIRKY
 	; fill pokedex
@@ -283,9 +284,9 @@ endc
 else
 
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue .NormalRadio
+	iftruefwd .NormalRadio
 	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
-	iftrue .AbbreviatedRadio
+	iftruefwd .AbbreviatedRadio
 	playmusic MUSIC_POKEMON_TALK
 	opentext
 	writetext PlayerRadioText1

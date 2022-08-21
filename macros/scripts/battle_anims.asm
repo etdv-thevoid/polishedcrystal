@@ -87,14 +87,14 @@ MACRO anim_incbgeffect
 	db \1 ; effect
 ENDM
 
-	const anim_enemyfeetobj_command ; d9
-MACRO anim_enemyfeetobj
-	db anim_enemyfeetobj_command
+	const anim_battlergfx_2row_command ; d9
+MACRO anim_battlergfx_2row
+	db anim_battlergfx_2row_command
 ENDM
 
-	const anim_playerheadobj_command ; da
-MACRO anim_playerheadobj
-	db anim_playerheadobj_command
+	const anim_battlergfx_1row_command ; da
+MACRO anim_battlergfx_1row
+	db anim_battlergfx_1row_command
 ENDM
 
 	const anim_checkpokeball_command ; db
@@ -164,9 +164,19 @@ MACRO anim_updateactorpic
 	db anim_updateactorpic_command
 ENDM
 
-	const_skip ; e9
+	const anim_setbgpal_command ; e9
+MACRO anim_setbgpal
+	db anim_setbgpal_command
+	db \1 ; pal index to set (0-7)
+	db \2 ; battle pal
+ENDM
 
-	const_skip ; ea
+	const anim_setobjpal_command ; ea
+MACRO anim_setobjpal
+	db anim_setobjpal_command
+	db \1 ; pal index to set (0-7)
+	db \2 ; battle pal
+ENDM
 
 	const_skip ; eb
 

@@ -476,6 +476,16 @@ else
 	MONOCHROME_RGB_TWO
 endc
 
+BillsPC_SafeRequest1bppInWRA6::
+	ldh a, [hROMBank]
+	ld b, a
+	call RunFunctionInWRA6
+.Function:
+	ldh a, [rLY]
+	cp $40
+	jmp c, Get1bpp
+	call DelayFrame
+	jr .Function
 
 BillsPC_SafeRequest2bppInWRA6::
 	ldh a, [hROMBank]
@@ -730,15 +740,23 @@ BillsPC_HideCursorAndMode:
 	call BillsPC_HideCursor
 	; fallthrough
 BillsPC_HideModeIcon:
-	ld hl, wVirtualOAMSprite09
+	call BillsPC_CheckBagDisplay
+	ld hl, wShadowOAMSprite05
+	jr z, .got_mode_area
+	ld hl, wShadowOAMSprite12
+.got_mode_area
 	ld bc, 20
 	xor a
 	rst ByteFill
 	ret
 
 BillsPC_HideCursor:
-	ld hl, wVirtualOAM
-	ld bc, 36
+	call BillsPC_CheckBagDisplay
+	ld hl, wShadowOAM
+	ld bc, 48
+	jr nz, .got_bytecount
+	ld c, 20
+.got_bytecount
 	xor a
 	rst ByteFill
 	ret
@@ -750,13 +768,13 @@ BillsPC_UpdateCursorLocation:
 	ldh a, [rLY]
 	cp $60
 	call nc, DelayFrame
-	ld hl, wVirtualOAMSprite30
+	ld hl, wShadowOAMSprite30
 	ld de, wStringBuffer3
 	ld bc, 8
 	rst CopyBytes
 	farcall PlaySpriteAnimations
 	ld hl, wStringBuffer3
-	ld de, wVirtualOAMSprite30
+	ld de, wShadowOAMSprite30
 	ld bc, 8
 	rst CopyBytes
 	jmp PopBCDEHL
@@ -941,7 +959,7 @@ _GetCursorMon:
 	call GetStorageBoxMon
 	jr nz, .not_clear
 	ld a, -1
-	ld [wVirtualOAMSprite30], a
+	ld [wShadowOAMSprite30], a
 	; fallthrough
 .clear
 	; Clear existing data
@@ -968,7 +986,7 @@ _GetCursorMon:
 	ret
 .reset_item
 	ld a, -1
-	ld [wVirtualOAMSprite30], a
+	ld [wShadowOAMSprite30], a
 	or 1
 	ret
 
@@ -1100,7 +1118,7 @@ _GetCursorMon:
 	farcall VaryBGPalByTempMonDVs
 
 	; Show or hide item icon
-	ld hl, wVirtualOAMSprite30
+	ld hl, wShadowOAMSprite30
 	call GetMonItemUnlessCursor
 	ld [hl], -1
 	jr z, .item_icon_done
@@ -1437,9 +1455,8 @@ ManageBoxes:
 	done
 
 .StorageMonMenu:
-	db $40 ; flags
-	db 02, 09 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 9, 2, 19, 17
 	dw .StorageMenuData2
 	db 1 ; default option
 
@@ -1451,9 +1468,8 @@ ManageBoxes:
 	dw BillsPC_MenuStrings
 
 .PartyMonMenu:
-	db $40 ; flags
-	db 02, 10 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 10, 2, 19, 17
 	dw .PartyMenuData2
 	db 1 ; default option
 
@@ -1465,9 +1481,8 @@ ManageBoxes:
 	dw BillsPC_MenuStrings
 
 .BoxMenu:
-	db $40 ; flags
-	db 08, 10 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 10, 8, 19, 17
 	dw .BoxMenuData2
 	db 1 ; default option
 
@@ -1591,6 +1606,10 @@ BillsPC_CursorPick2:
 
 BillsPC_SetIcon:
 ; Writes icon tiles to hl depending on species data in de. Assumes vbk1.
+; If b is -1, also write icon mask data.
+	ld a, b
+	inc a ; Will set zero if we're dealing with held/quick slot.
+	push af
 	ld a, [de]
 	inc de
 	ld [wCurIcon], a
@@ -1600,6 +1619,12 @@ BillsPC_SetIcon:
 	call BillsPC_SetPals
 	call DelayFrame
 	pop hl
+	pop af
+	jr nz, .mask_done
+
+	farcall GetStorageMask
+
+.mask_done
 	farjp GetStorageMini
 
 BillsPC_MoveIconData:
@@ -1637,7 +1662,7 @@ BillsPC_MoveIconData:
 	inc a
 	ld de, vTiles3 tile $20 ; Item for mon cursor is hovering
 	jr nz, .got_item_tile
-	ld de, vTiles3 tile $10 ; Item cursor is holding.
+	ld de, vTiles3 tile $08 ; Item cursor is holding.
 .got_item_tile
 	ld hl, vTiles3 tile $14 ; Quick tile.
 	push bc
@@ -1651,7 +1676,7 @@ BillsPC_MoveIconData:
 	inc b
 	ld a, c
 	or b
-	ld hl, vTiles3 tile $10
+	ld hl, vTiles3 tile $08
 	ld a, 1
 	call z, BillsPC_BlankTiles
 	jr .done
@@ -1688,7 +1713,13 @@ BillsPC_MoveIconData:
 	ld [hli], a
 	ld a, 2
 	call .GetAddr
-	ld a, 1
+
+	; If we're blanking held or quick, blank 2x4 instead of 1x4 to include mask.
+	inc b
+	ld a, 2
+	jr z, .got_blanking_range
+	dec a
+.got_blanking_range
 	call BillsPC_BlankTiles
 
 .done
@@ -2197,7 +2228,7 @@ BillsPC_BlankCursorItem:
 ; Blanks cursor item and swap icon. Assumes vbk1.
 	; Remove held item icon.
 	ld a, -1
-	ld [wVirtualOAMSprite31], a
+	ld [wShadowOAMSprite31], a
 
 	; Blank cursor item name. Only uses 10 tiles, but this is ok.
 	ld hl, vTiles5 tile $3b
@@ -2302,7 +2333,7 @@ BillsPC_MoveItem:
 	ldh [hBGMapMode], a
 
 	; Load held item icon
-	ld hl, wVirtualOAMSprite31
+	ld hl, wShadowOAMSprite31
 	ld a, 32
 	ld [hli], a
 	ld a, 72
@@ -2332,7 +2363,7 @@ BillsPC_MoveItem:
 	ret
 
 BillsPC_LoadCursorItemIcon:
-	ld hl, vTiles3 tile $10
+	ld hl, vTiles3 tile $08
 	lb bc, BANK(HeldItemIcons), 1
 
 	ld a, [wBillsPC_CursorItem]
@@ -2568,9 +2599,8 @@ BillsPC_Item:
 	done
 
 .MailMenu:
-	db $40 ; flags
-	db 03, 11 ; start coords
-	db 12, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 11, 3, 19, 12
 	dw .MailMenuData
 	db 1 ; default option
 
@@ -2582,9 +2612,8 @@ BillsPC_Item:
 	dw BillsPC_MenuStrings
 
 .ItemMenu:
-	db $40 ; flags
-	db 05, 11 ; start coords
-	db 12, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 11, 5, 19, 12
 	dw .ItemMenuData
 	db 1 ; default option
 
@@ -2596,9 +2625,8 @@ BillsPC_Item:
 	dw BillsPC_MenuStrings
 
 .NoItemMenu:
-	db $40 ; flags
-	db 07, 11 ; start coords
-	db 12, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 11, 7, 19, 12
 	dw .NoItemMenuData
 	db 1 ; default option
 
@@ -2982,9 +3010,8 @@ BillsPC_Theme:
 	done
 
 .ThemeMenuDataHeader:
-	db $40 ; flags
-	db 01, 08 ; start coords
-	db 13, 18 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 8, 1, 18, 13
 	dw .ThemeMenuData2
 	db 1 ; default option
 

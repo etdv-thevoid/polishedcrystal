@@ -1,60 +1,61 @@
 StdScripts::
-	dba PokeCenterNurseScript
-	dba DifficultBookshelfScript
-	dba PictureBookshelfScript
-	dba MagazineBookshelfScript
-	dba TeamRocketOathScript
-	dba IncenseBurnerScript
-	dba MerchandiseShelfScript
-	dba TownMapScript
-	dba WindowScript
-	dba TVScript
-	dba Radio1Script
-	dba Radio2Script
-	dba TrashCanScript
-	dba StrengthBoulderScript
-	dba SmashRockScript
-	dba PokeCenterSignScript
-	dba MartSignScript
-	dba ElevatorButtonScript
-	dba DayToTextScript
-	dba BugContestResultsWarpScript
-	dba BugContestResultsScript
-	dba AskNumber1MScript
-	dba AskNumber2MScript
-	dba RegisteredNumberMScript
-	dba NumberAcceptedMScript
-	dba NumberDeclinedMScript
-	dba PhoneFullMScript
-	dba RematchMScript
-	dba GiftMScript
-	dba PackFullMScript
-	dba RematchGiftMScript
-	dba AskNumber1FScript
-	dba AskNumber2FScript
-	dba RegisteredNumberFScript
-	dba NumberAcceptedFScript
-	dba NumberDeclinedFScript
-	dba PhoneFullFScript
-	dba RematchFScript
-	dba GiftFScript
-	dba PackFullFScript
-	dba RematchGiftFScript
-	dba GymStatue0Script
-	dba GymStatue1Script
-	dba GymStatue2Script
-	dba GymStatue3Script
-	dba ReceiveItemScript
-	dba PCScript
-	dba GameCornerCoinVendorScript
-	dba HappinessCheckScript
-	dba CutTreeScript
-	dba RefrigeratorScript
-	dba SinkScript
-	dba StoveScript
-	dba VendingMachineScript
-	dba TreeGrottoScript
-	dba CaveGrottoScript
+; all scripts must be defined in this bank
+	dw PokeCenterNurseScript
+	dw DifficultBookshelfScript
+	dw PictureBookshelfScript
+	dw MagazineBookshelfScript
+	dw TeamRocketOathScript
+	dw IncenseBurnerScript
+	dw MerchandiseShelfScript
+	dw TownMapScript
+	dw WindowScript
+	dw TVScript
+	dw Radio1Script
+	dw Radio2Script
+	dw TrashCanScript
+	dw StrengthBoulderScript
+	dw SmashRockScript
+	dw PokeCenterSignScript
+	dw MartSignScript
+	dw ElevatorButtonScript
+	dw DayToTextScript
+	dw BugContestResultsWarpScript
+	dw BugContestResultsScript
+	dw AskNumber1MScript
+	dw AskNumber2MScript
+	dw RegisteredNumberMScript
+	dw NumberAcceptedMScript
+	dw NumberDeclinedMScript
+	dw PhoneFullMScript
+	dw RematchMScript
+	dw GiftMScript
+	dw PackFullMScript
+	dw RematchGiftMScript
+	dw AskNumber1FScript
+	dw AskNumber2FScript
+	dw RegisteredNumberFScript
+	dw NumberAcceptedFScript
+	dw NumberDeclinedFScript
+	dw PhoneFullFScript
+	dw RematchFScript
+	dw GiftFScript
+	dw PackFullFScript
+	dw RematchGiftFScript
+	dw GymStatue0Script
+	dw GymStatue1Script
+	dw GymStatue2Script
+	dw GymStatue3Script
+	dw ReceiveItemScript
+	dw PCScript
+	dw GameCornerCoinVendorScript
+	dw HappinessCheckScript
+	dw CutTreeScript
+	dw RefrigeratorScript
+	dw SinkScript
+	dw StoveScript
+	dw VendingMachineScript
+	dw TreeGrottoScript
+	dw CaveGrottoScript
 
 PokeCenterNurseScript:
 	opentext
@@ -1593,9 +1594,8 @@ CoinVendor_IntroScript:
 	waitendtext
 
 .MenuDataHeader:
-	db $40 ; flags
-	db 04, 00 ; start coords
-	db 11, 15 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 4, 15, 11
 	dw .MenuData2
 	db 1 ; default option
 
@@ -1717,9 +1717,8 @@ VendingMachineScript:
 	sjump .Start
 
 .MenuData:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 2, 19, 11
 	dw .MenuData2
 	db 1 ; default option
 

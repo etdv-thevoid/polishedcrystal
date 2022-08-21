@@ -52,37 +52,26 @@ ReadAnyMail:
 	ld [wCurPartySpecies], a
 	ld b, [hl]
 	call CloseSRAM
-	ld hl, MailGFXPointers
-	ld c, 0
-.loop2
-	ld a, [hli]
-	cp b
-	jr z, .got_pointer
-	cp -1
-	jr z, .got_pointer
-	inc c
-	inc hl
-	inc hl
-	jr .loop2
-
-.got_pointer
-	ld a, c
+	ld a, b
+	sub FIRST_MAIL
 	ld [wBuffer3], a
 	pop bc
-	jmp IndirectHL
+	call StackJumpTable
 
-MailGFXPointers:
-	dbw FLOWER_MAIL,  LoadFlowerMailGFX
-	dbw SURF_MAIL,    LoadSurfMailGFX
-	dbw LITEBLUEMAIL, LoadLiteBlueMailGFX
-	dbw PORTRAITMAIL, LoadPortraitMailGFX
-	dbw LOVELY_MAIL,  LoadLovelyMailGFX
-	dbw EON_MAIL,     LoadEonMailGFX
-	dbw MORPH_MAIL,   LoadMorphMailGFX
-	dbw BLUESKY_MAIL, LoadBlueSkyMailGFX
-	dbw MUSIC_MAIL,   LoadMusicMailGFX
-	dbw MIRAGE_MAIL,  LoadMirageMailGFX
-	dbw -1,           LoadFlowerMailGFX ; invalid
+LoadMailGFXJumptable:
+; entries correspond to mail items
+	table_width 2, LoadMailGFXJumptable
+	dw LoadFlowerMailGFX
+	dw LoadSurfMailGFX
+	dw LoadLiteBlueMailGFX
+	dw LoadPortraitMailGFX
+	dw LoadLovelyMailGFX
+	dw LoadEonMailGFX
+	dw LoadMorphMailGFX
+	dw LoadBlueSkyMailGFX
+	dw LoadMusicMailGFX
+	dw LoadMirageMailGFX
+	assert_table_length NUM_MAILS
 
 LoadSurfMailGFX:
 	push bc
@@ -509,14 +498,14 @@ LoadPortraitMailGFX:
 	ld de, PortraitMailSmallPokeballGFX
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
-
 	call DrawMailBorder2
 	hlcoord 8, 15
 	ld a, $36
 	ld b, $a
 	call Mail_DrawRowLoop
 	call LovelyEonMail_PlaceIcons
-	ld a, $1
+	ld a, MON_FORM
+	call GetPartyParamLocationAndValue
 	ld [wCurForm], a
 	hlcoord 1, 10
 	call PrepMonFrontpic

@@ -261,17 +261,22 @@ ENDU
 
 ENDU
 
-	ds 3 ; unused
-
-wLastBattlePocket:: db
 wBattleItemsPocketCursor:: db
 wBattleMedicinePocketCursor:: db
 wBattleBallsPocketCursor:: db
 wBattleBerriesPocketCursor:: db
+wBattleKeyItemsPocketCursor:: db
+wLastBattlePocket:: db
+
+	ds 1 ; unused
+
 wBattleItemsPocketScrollPosition:: db
 wBattleMedicinePocketScrollPosition:: db
 wBattleBallsPocketScrollPosition:: db
 wBattleBerriesPocketScrollPosition:: db
+wBattleKeyItemsPocketScrollPosition:: db
+
+	assert ((wBattleItemsPocketScrollPosition - wBattleItemsPocketCursor) == (wItemsPocketScrollPosition - wItemsPocketCursor))
 
 wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH
 
@@ -488,12 +493,13 @@ wOverworldMapAnchor:: dw
 wMetatileStandingY:: db
 wMetatileStandingX:: db
 
-wMapPartial::
-wMapAttributesBank:: db
+	ds 1 ; unused
+
 wMapTileset:: db
 wEnvironment:: db
-wMapAttributesPointer:: dw
-wMapPartialEnd::
+wSign:: db
+
+	ds 1 ; unused
 
 wMapAttributes::
 wMapBorderBlock:: db
@@ -514,21 +520,17 @@ wWestMapConnection:: map_connection_struct wWest
 wEastMapConnection:: map_connection_struct wEast
 
 wTileset::
-wTilesetBank::
-wTilesetGFX0Bank:: db
+wTilesetDataBank:: db
 wTilesetGFX0Address:: dw
-wTilesetGFX1Bank:: db
 wTilesetGFX1Address:: dw
-wTilesetGFX2Bank:: db
 wTilesetGFX2Address:: dw
-wTilesetBlocksBank:: db
 wTilesetBlocksAddress:: dw
-wTilesetCollisionBank:: db
 wTilesetCollisionAddress:: dw
-wTilesetAttributesBank:: db
 wTilesetAttributesAddress:: dw
-wTilesetAnim:: dw ; bank 3f
+wTilesetAnim:: dw ; BANK(_AnimateTileset)
 wTilesetEnd::
+
+	ds 5 ; unused
 
 wEvolvableFlags:: flag_array PARTY_LENGTH
 
@@ -584,12 +586,16 @@ wCurEnemyItem:: db
 
 ENDU
 
-wTempEnemyMonSpecies:: db
-wTempBattleMonSpecies:: db
+	ds 2 ; unused
 
 wEnemyMon:: battle_struct wEnemyMon
 
-	ds 5 ; unused
+wTempBattleMonSpecies:: db
+wTempBattleMonForm:: db
+wTempEnemyMonSpecies:: db
+wTempEnemyMonForm:: db
+
+	ds 1 ; unused
 
 wEnemyMonCatchRate:: db
 wEnemyMonBaseExp:: db
@@ -695,8 +701,10 @@ wApplyStatLevelMultipliersToEnemy::
 wUsePPUp::
 wFoundMatchingID::
 	db
-wTempForm::
-	ds 2
+
+wTempForm:: db
+
+	ds 1 ; unused
 
 wMonTriedToEvolve:: db
 
@@ -827,7 +835,7 @@ wBugContestSecsRemaining:: db
 
 wMapStatusEnd::
 
-	ds 2
+	ds 2 ; unused
 
 
 SECTION "Game Data", WRAMX
@@ -859,7 +867,7 @@ wStartSecond:: db
 
 wRTC:: ds 4 ; in-game wall clock time at save
 
-	ds 4
+	ds 4 ; unused
 
 wDST::
 ; bit 7: dst
@@ -922,15 +930,16 @@ wObjectMasks:: ds NUM_OBJECTS
 
 wVariableSprites:: ds $100 - SPRITE_VARS
 
-wEnteredMapFromContinue:: db
-
 wStatusFlags3::
 	; 0 - judge machine
 	db
 
-	ds 1
+wEnteredMapFromContinue:: db
+
 wTimeOfDayPal:: db
-	ds 4
+
+	ds 4 ; unused
+
 wTimeOfDayPalFlags:: db
 wTimeOfDayPalset:: db
 wCurTimeOfDay:: db
@@ -980,7 +989,7 @@ wTMsHMsEnd::
 wKeyItems:: ds NUM_KEY_ITEMS + 1
 wKeyItemsEnd::
 
-	ds 6 ; unused
+	ds 5 ; unused
 
 wNumItems:: db
 wItems:: ds MAX_ITEMS * 2 + 1
@@ -1010,14 +1019,14 @@ wPokegearFlags::
 ; bit 2: phone
 ; bit 3: expn
 ; bit 7: on/off
-	ds 1
+	db
 wRadioTuningKnob:: db
 wPokedexMode:: db
 
 wTMHMPocketScrollPosition:: db
 wTMHMPocketCursor::
 ; beyond the cursor position, bit 7 also controls how TMs are sorted
-	ds 1
+	db
 
 wPlayerState:: db
 
@@ -1155,7 +1164,10 @@ wEventFlags:: flag_array NUM_EVENTS
 
 wCurBox:: db
 
-	ds 95 ; unused
+wPlayerCaught:: db
+wPlayerCaught2:: db
+
+	ds 93 ; unused
 
 wCelebiEvent:: db
 
@@ -1179,7 +1191,7 @@ wCurMapSceneScriptsPointer:: dw
 wCurMapCallbackCount:: db
 wCurMapCallbacksPointer:: dw
 
-	ds 2 ; unused
+	ds 1 ; unused
 
 ; Sprite id of each decoration
 wDecoBed:: db
@@ -1367,7 +1379,12 @@ wBreedMon2OT:: ds PLAYER_NAME_LENGTH
 wBreedMon2Extra:: ds 3
 wBreedMon2:: breed_struct wBreedMon2
 
-	ds 54 ; unused
+; TODO: space for a Day-Care on Route 5 which just levels up one Pokémon;
+; Route 34 will have a Nursery that breeds with two Pokémon.
+wLevelUpMonNickname:: ds MON_NAME_LENGTH
+wLevelUpMonOT:: ds PLAYER_NAME_LENGTH
+wLevelUpMonExtra:: ds 3
+wLevelUpMon:: breed_struct wLevelUpMon
 
 wBugContestBackupPartyCount:: db
 wContestMon:: party_struct wContestMon
@@ -1402,9 +1419,8 @@ wRegisteredItemFlags::
 	; 7 - wRegisteredItems + 3 second item list flag
 	db
 
-wRegisteredItems::
 ; You can map 4 items, to select + directions
-	ds 4
+wRegisteredItems:: ds 4
 
 wPokemonDataEnd::
 wGameDataEnd::
@@ -1422,7 +1438,7 @@ wPokeAnimSceneIndex:: db
 wPokeAnimPointer:: dw
 wPokeAnimSpecies:: db
 wPokeAnimVariant:: db
-	ds 1
+	ds 1 ; unused
 wPokeAnimGraphicStartTile:: db
 wPokeAnimCoord:: dw
 wPokeAnimFrontpicHeight:: db
@@ -1441,12 +1457,12 @@ wPokeAnimCurBitmask:: db
 wPokeAnimWaitCounter:: db
 wPokeAnimCommand:: db
 wPokeAnimParameter:: db
-	ds 1
+	ds 1 ; unused
 wPokeAnimBitmaskCurCol:: db
 wPokeAnimBitmaskCurRow:: db
 wPokeAnimBitmaskCurBit:: db
 wPokeAnimBitmaskBuffer:: db
-	ds 8
+	ds 8 ; unused
 wPokeAnimStructEnd::
 
 
@@ -1524,7 +1540,7 @@ wDexNumberString:: ds 4 ; 3 numbers including leading zeroes + terminator
 ; including things like the proper floor. This is -1 to denote no highlight,
 wDexAreaHighlight:: db
 
-; Needed because when we reload the screen, wVirtualOAM is wiped clean.
+; Needed because when we reload the screen, wShadowOAM is wiped clean.
 wDexAreaHighlightY:: db
 wDexAreaHighlightX:: db
 
@@ -1553,6 +1569,7 @@ wDexAreaLastMode:: db
 	; let wDexAreaMons be misaligned (an assert will tell you if you do).
 	ds 5
 
+ALIGN 8
 wDexAreaMons::
 ; Array size needs to be a multiple of 10 covering all landmarks for a region.
 ; Upper cap is 120.
@@ -1574,15 +1591,17 @@ wDexAreaModeCopy:: db ; written to from hPokedexAreaMode on screen reload
 
 	; Used to align wDexAreaMons2. Feel free to add more data here, just don't
 	; let wDexAreaMons2 be misaligned (an assert will tell you if you do).
-	ds $2b
+	ds 43
 
+ALIGN 8
 wDexAreaMons2:: ds (wDexAreaMonsEnd - wDexAreaMons)
 
-	; Used to align wDexAreaVirtualOAM. Feel free to add more data here, just
+	; Used to align wDexAreaShadowOAM. Feel free to add more data here, just
 	; don't let it be misaligned.
-	ds $39
+	ds 57
 
-wDexAreaVirtualOAM:: ds (wVirtualOAMEnd - wVirtualOAM)
+ALIGN 8
+wDexAreaShadowOAM:: ds (wShadowOAMEnd - wShadowOAM)
 
 ENDU
 

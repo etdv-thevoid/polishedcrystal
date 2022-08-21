@@ -150,7 +150,7 @@ CheckForSurfingPikachu:
 	ld de, MON_EXTSPECIES - MON_SPECIES
 	add hl, de
 	ld a, [hl]
-	and MON_EXTSPECIES_F
+	and 1 << MON_EXTSPECIES_F
 	jr nz, .no
 	ld a, TRUE
 	ldh [hScriptVar], a
@@ -564,7 +564,7 @@ GetSurfType:
 	ld de, MON_EXTSPECIES - MON_SPECIES
 	add hl, de
 	ld a, [hl]
-	and MON_EXTSPECIES_F
+	and 1 << MON_EXTSPECIES_F
 	ld a, PLAYER_SURF_PIKA
 	ret z
 .not_pikachu
@@ -1550,8 +1550,6 @@ FishFunction:
 
 .TryFish:
 	ld a, [wPlayerState]
-	cp PLAYER_SURF
-	jr z, .fail
 	cp PLAYER_SURF_PIKA
 	jr z, .fail
 	call GetFacingTileCoord

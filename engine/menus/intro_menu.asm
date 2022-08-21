@@ -92,8 +92,8 @@ ResetWRAM_NotPlus:
 	ret
 
 ResetWRAM:
-	ld hl, wVirtualOAM
-	ld bc, wOptions3 - wVirtualOAM
+	ld hl, wShadowOAM
+	ld bc, wOptions3 - wShadowOAM
 	xor a
 	rst ByteFill
 
@@ -355,8 +355,19 @@ ConfirmContinue:
 WarnVBA:
 	call CheckVBA
 	ret z
+if !DEF(DEBUG)
 	ld hl, .WarnVBAText
 	jmp PrintText
+else
+	ld hl, wOptions1
+	push hl
+	set NO_TEXT_SCROLL, [hl]
+	ld hl, .WarnVBAText
+	call PrintText
+	pop hl
+	res NO_TEXT_SCROLL, [hl]
+	ret
+endc
 
 .WarnVBAText:
 	text_far _WarnVBAText
@@ -443,9 +454,8 @@ Continue_LoadMenuHeader:
 	jmp PlaceVerticalMenuItems
 
 .MenuDataHeader_Dex:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 09, 15 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 15, 9
 	dw .MenuData2_Dex
 	db 1 ; default option
 
@@ -458,9 +468,8 @@ Continue_LoadMenuHeader:
 	db "Time@"
 
 .MenuDataHeader_NoDex:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 09, 15 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 15, 9
 	dw .MenuData2_NoDex
 	db 1 ; default option
 
@@ -967,7 +976,7 @@ Intro_PlacePlayerSprite:
 	ld hl, vTiles0
 	call Request2bppInWRA6
 
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld de, .sprites
 	ld a, [de]
 	inc de
