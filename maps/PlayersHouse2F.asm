@@ -63,7 +63,7 @@ if DEF(DEBUG)
 	setflag ENGINE_EXPN_CARD
 	; pokedex
 	setflag ENGINE_POKEDEX
-;	setflag ENGINE_UNOWN_DEX
+	setflag ENGINE_UNOWN_DEX
 	; judge machine
 	setflag ENGINE_JUDGE_MACHINE
 	; all key items
@@ -208,8 +208,9 @@ endr
 	setevent EVENT_RESTORED_POWER_TO_KANTO
 	; post-e4
 	setflag ENGINE_CREDITS_SKIP
-	; good party
-	givepoke MEWTWO, PLAIN_FORM, 100, BRIGHTPOWDER
+	; Mewtwo
+	givepoke MEWTWO, PLAIN_FORM, 100, BERSERK_GENE
+	loadmem wPartyMon1Personality, HIDDEN_ABILITY | NAT_SATK_UP_ATK_DOWN
 	loadmem wPartyMon1EVs+0, 252
 	loadmem wPartyMon1EVs+1, 252
 	loadmem wPartyMon1EVs+2, 252
@@ -219,34 +220,74 @@ endr
 	loadmem wPartyMon1DVs+0, $ff
 	loadmem wPartyMon1DVs+1, $ff
 	loadmem wPartyMon1DVs+2, $ff
-	loadmem wPartyMon1Personality, ABILITY_2 | NAT_SATK_UP_ATK_DOWN
-	loadmem wPartyMon1Stats+0, HIGH(999)
-	loadmem wPartyMon1Stats+1, LOW(999)
-	loadmem wPartyMon1Stats+2, HIGH(999)
-	loadmem wPartyMon1Stats+3, LOW(999)
-	loadmem wPartyMon1Stats+4, HIGH(999)
-	loadmem wPartyMon1Stats+5, LOW(999)
-	loadmem wPartyMon1Stats+6, HIGH(999)
-	loadmem wPartyMon1Stats+7, LOW(999)
-	loadmem wPartyMon1Stats+8, HIGH(999)
-	loadmem wPartyMon1Stats+9, LOW(999)
-	; hm slave
+	loadmem wPartyMon1Moves+0, PSYSTRIKE
+	loadmem wPartyMon1Moves+1, AURA_SPHERE
+	loadmem wPartyMon1Moves+2, SHADOW_BALL
+	loadmem wPartyMon1Moves+3, CALM_MIND
+	loadmem wPartyMon1PP+0, 10
+	loadmem wPartyMon1PP+1, 10
+	loadmem wPartyMon1PP+2, 10
+	loadmem wPartyMon1PP+3, 10
+	; Mew
 	givepoke MEW, PLAIN_FORM, 100, LEFTOVERS
+	loadmem wPartyMon2Personality, HIDDEN_ABILITY | NAT_SATK_UP_ATK_DOWN
+	loadmem wPartyMon2EVs+0, 252
+	loadmem wPartyMon2EVs+1, 252
+	loadmem wPartyMon2EVs+2, 252
+	loadmem wPartyMon2EVs+3, 252
+	loadmem wPartyMon2EVs+4, 252
+	loadmem wPartyMon2EVs+5, 252
+	loadmem wPartyMon2DVs+0, $ff
+	loadmem wPartyMon2DVs+1, $ff
+	loadmem wPartyMon2DVs+2, $ff
 	loadmem wPartyMon2Moves+0, FLY
-	loadmem wPartyMon2Moves+1, HEADBUTT
-	loadmem wPartyMon2Moves+2, DIG
-	loadmem wPartyMon2Moves+3, FRESH_SNACK
-	loadmem wPartyMon2PP+0, 15
-	loadmem wPartyMon2PP+1, 15
+	loadmem wPartyMon2Moves+1, DIG
+	loadmem wPartyMon2Moves+2, HEADBUTT
+	loadmem wPartyMon2Moves+3, ROCK_SMASH
+	loadmem wPartyMon2PP+0, 10
+	loadmem wPartyMon2PP+1, 10
 	loadmem wPartyMon2PP+2, 10
 	loadmem wPartyMon2PP+3, 10
-	; variant form test
-	givepoke WEEZING, GALARIAN_FORM, 50
-	loadmem wPartyMon3Shiny, SHINY_MASK
-	; ext species test
-	givepoke KLEAVOR, 50
-	givepoke DITTO, 50
-	loadmem wPartyMon5Personality, HIDDEN_ABILITY | QUIRKY
+	; Celebi
+	givepoke CELEBI, PLAIN_FORM, 100, LEFTOVERS
+	loadmem wPartyMon3Personality, HIDDEN_ABILITY | NAT_SATK_UP_ATK_DOWN
+	loadmem wPartyMon3EVs+0, 252
+	loadmem wPartyMon3EVs+1, 252
+	loadmem wPartyMon3EVs+2, 252
+	loadmem wPartyMon3EVs+3, 252
+	loadmem wPartyMon3EVs+4, 252
+	loadmem wPartyMon3EVs+5, 252
+	loadmem wPartyMon3DVs+0, $ff
+	loadmem wPartyMon3DVs+1, $ff
+	loadmem wPartyMon3DVs+2, $ff
+	loadmem wPartyMon3Moves+0, ENERGY_BALL
+	loadmem wPartyMon3Moves+1, MOONBLAST
+	loadmem wPartyMon3Moves+2, PERISH_SONG
+	loadmem wPartyMon3Moves+3, HEAL_BELL
+	loadmem wPartyMon3PP+0, 10
+	loadmem wPartyMon3PP+1, 10
+	loadmem wPartyMon3PP+2, 10
+	loadmem wPartyMon3PP+3, 10
+	; Alolan Raichu
+	givepoke RAICHU, ALOLAN_FORM, 100, LIGHT_BALL
+	loadmem wPartyMon4Personality, HIDDEN_ABILITY | NAT_SATK_UP_ATK_DOWN
+	loadmem wPartyMon4EVs+0, 252
+	loadmem wPartyMon4EVs+1, 252
+	loadmem wPartyMon4EVs+2, 252
+	loadmem wPartyMon4EVs+3, 252
+	loadmem wPartyMon4EVs+4, 252
+	loadmem wPartyMon4EVs+5, 252
+	loadmem wPartyMon4DVs+0, $ff
+	loadmem wPartyMon4DVs+1, $ff
+	loadmem wPartyMon4DVs+2, $ff
+	loadmem wPartyMon4Moves+0, THUNDERBOLT
+	loadmem wPartyMon4Moves+1, PSYCHIC_M
+	loadmem wPartyMon4Moves+2, SURF
+	loadmem wPartyMon4Moves+3, CALM_MIND
+	loadmem wPartyMon4PP+0, 10
+	loadmem wPartyMon4PP+1, 10
+	loadmem wPartyMon4PP+2, 10
+	loadmem wPartyMon4PP+3, 10
 	; fill pokedex
 	callasm FillPokedex
 	; intro events
